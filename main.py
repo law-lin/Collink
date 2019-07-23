@@ -19,26 +19,15 @@ class IntroPage(webapp2.RequestHandler):
         template = jinja_env.get_template("/templates/intropage.html")
         user = users.get_current_user()
         login_url = None
-        logout_url = None
         email_address = None
         if user:
             email_address = user.nickname()
-            logout_url = users.create_logout_url('/')
-            self.response.write('''
-            Welcome to Collink, %s!<br>
-            <form method="post" action="">Name:
-            <input type = "text" name = "name">
-            <input type="submit">
-            </form>
-            ''' % (email_address))
-        else:
-            login_url = users.create_login_url('/')
+        login_url = users.create_login_url('/main')
         template_vars = {
-                "isUser": user,
-                "email": email_address,
-                "login_url": login_url,
-                "logout_url": logout_url,
-                }
+            "isUser": user,
+            "email": email_address,
+            "login_url": login_url,
+            }
         self.response.write(template.render(template_vars))
     def post(self):
         template = jinja_env.get_template('/templates/index.html')
@@ -49,9 +38,13 @@ class MainPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
         template = jinja_env.get_template("/templates/index.html")
-        self.response.write(template.render())
-
-
+        user = users.get_current_user()
+        logout_url = None
+        logout_url = users.create_logout_url('/')
+        template_vars = {
+            "logout_url" : logout_url,
+        }
+        self.response.write(template.render(template_vars))
 
 
 class AddEventPage(webapp2.RequestHandler):
