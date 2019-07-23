@@ -26,12 +26,8 @@ class IntroPage(webapp2.RequestHandler):
             logout_url = users.create_logout_url('/')
             self.response.write('''
             Welcome to Collink, %s! Select the college you attend! <br>
-            <form method="post" action="/">Name:
-            <input type="text" name="name">College:
-            <select name = "College" required = "required">
-                <option value = "MIT"</option>Massachusetts Institute of Technology
-                <option value = "Stanford"</option>Stanford University
-            </select>
+            <form method="post" action="">Name:
+            <input type = "text" name = "name">
             <input type="submit">
             </form>
             ''' % (email_address))
@@ -53,6 +49,9 @@ class MainPage(webapp2.RequestHandler):
         template = jinja_env.get_template("/templates/index.html")
         self.response.write(template.render())
 
+
+
+
 class AddEventPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
@@ -62,5 +61,6 @@ class AddEventPage(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', IntroPage),
+    ('/main', MainPage),
     ('/addevent', AddEventPage),
 ], debug=True)
