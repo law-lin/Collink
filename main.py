@@ -30,8 +30,8 @@ class MainPage(webapp2.RequestHandler):
             <form method="post" action="/">
             <input type="text" name="name">
             <input type="submit">
-            </form><br> %s <br>
-            ''' % (email_address, logout_url))
+            </form>
+            ''' % (email_address))
         else:
             login_url = users.create_login_url('/')
         template_vars = {
