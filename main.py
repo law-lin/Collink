@@ -12,12 +12,10 @@ jinja_env = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-class MainPage(webapp2.RequestHandler):
+class IntroPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
-        template = jinja_env.get_template("/templates/index.html")
-
-
+        template = jinja_env.get_template("/templates/intropage.html")
         user = users.get_current_user()
         login_url = None
         logout_url = None
@@ -44,6 +42,11 @@ class MainPage(webapp2.RequestHandler):
 
 
 
+class MainPage(webapp2.RequestHandler):
+    def get(self):
+        self.response.headers['Content-Type'] = 'text/html'
+        template = jinja_env.get_template("/templates/index.html")
+        self.response.write(template.render())
 
 class AddEventPage(webapp2.RequestHandler):
     def get(self):
@@ -53,6 +56,7 @@ class AddEventPage(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ('/', MainPage),
+    ('/', IntroPage),
+    ('/<collegename>/', MainPage),
     ('/addevent', AddEventPage),
 ], debug=True)
