@@ -1,5 +1,5 @@
 import webapp2
-
+from google.appengine.api import users
 
 import jinja2
 import os
@@ -12,13 +12,38 @@ jinja_env = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-
-
 class MainPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
         template = jinja_env.get_template("/templates/index.html")
-        self.response.write(template.render())
+
+
+        user = users.get_current_user()
+        login_url = None
+        logout_url = None
+        email_address = None
+        if user:
+            email_address = user.nickname()
+            logout_url = users.create_logout_url('/')
+            self.response.write('''
+            Welcome to our site, %s!  Please sign up! <br>
+            <form method="post" action="/">
+            <input type="text" name="name">
+            <input type="submit">
+            </form><br> %s <br>
+            ''' % (email_address, logout_url))
+        else:
+            login_url = users.create_login_url('/')
+        template_vars = {
+                "isUser": user,
+                "email": email_address,
+                "login_url": login_url,
+                "logout_url": logout_url,
+                }
+        self.response.write(template.render(template_vars))
+
+
+
 
 class AddEventPage(webapp2.RequestHandler):
     def get(self):

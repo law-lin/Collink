@@ -12,6 +12,13 @@
       <img class="positionright" src="/static/headericon.png" height="80" width="80">
       <h1 class="brandname"> COLLINK <h1>
       <h2 class="slogan"> Linking up students on their college campuses nationwide! </h2>
+      {% if isUser %}
+      You're logged in as {{ email }}!
+      <a href = "{{ logout_url }}">Sign out</a>
+      {% else %}
+      Please log in.
+      <a href = "{{ login_url }}">Sign in</a>
+      {% endif %}
     </div>
     <div class='topnav'>
       <a class='active' href='/'> Home </a>
