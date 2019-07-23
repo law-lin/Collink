@@ -1,5 +1,6 @@
 import webapp2
 from google.appengine.api import users
+from google.appengine.ext import ndb
 
 import jinja2
 import os
@@ -24,9 +25,14 @@ class IntroPage(webapp2.RequestHandler):
             email_address = user.nickname()
             logout_url = users.create_logout_url('/')
             self.response.write('''
-            Welcome to our site, %s!  Please sign up! <br>
+            Welcome to Collink, %s! Select the college you attend! <br>
             <form method="post" action="/">
             <input type="text" name="name">
+            <select name = "College" required = "required">
+                <option value = "MIT"</option>
+                <option value = "Stanford"</option>
+                <option value = "University of Chicago"</option>
+            </select>
             <input type="submit">
             </form>
             ''' % (email_address))
