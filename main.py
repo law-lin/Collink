@@ -80,7 +80,10 @@ class AddEventPage(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', IntroPage),
+<<<<<<< HEAD
     ('/mit', MITPage),
     ('/stanford', StanfordPage),
+=======
+>>>>>>> bd8e1ce3276bb2a85b39526596bea8cdc9fe5c1d
     ('/addevent', AddEventPage),
 ], debug=True)

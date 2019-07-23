@@ -3,16 +3,17 @@ div {
 }
 
 body {
-  background-color: #CADCE4
+  background-image:url("/static/background.jpeg")
 }
 
 h3 {
   margin-left: auto;
   margin-left: auto;
-  width: 40em;
+  width: 36em;
   font-size: 30px;
   font-family: serif;
   color: #3E78A3;
+  text-decoration: underline;
 }
 
 .blocktext {
@@ -46,7 +47,7 @@ h3 {
   font-weight: bold;
   font-family: impact;
   color: #303030;
-  text-decoration-color: #E8EFF0;
+  text-decoration-color: white;
 }
 
 .header {
@@ -64,6 +65,11 @@ h3 {
 .topnav {
   background-color: #333;
   overflow: hidden;
+  opacity: 0.91;
+  margin: auto;
+  width: 60%;
+  display: flex;
+  justify-content: center;
 }
 
 /* Style the links inside the navigation bar */
