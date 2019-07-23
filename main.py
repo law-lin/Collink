@@ -26,11 +26,11 @@ class IntroPage(webapp2.RequestHandler):
             logout_url = users.create_logout_url('/')
             self.response.write('''
             Welcome to Collink, %s! Select the college you attend! <br>
-            <form method="post" action="/">Name:
+            <form method="post" action="">Name:
             <input type="text" name="name">College:
             <select name = "College" required = "required">
-                <option value = "MIT"</option>Massachusetts Institute of Technology
-                <option value = "Stanford"</option>Stanford University
+                <option value = "mit"</option>Massachusetts Institute of Technology
+                <option value = "stanford"</option>Stanford University
             </select>
             <input type="submit">
             </form>
@@ -53,6 +53,24 @@ class MainPage(webapp2.RequestHandler):
         template = jinja_env.get_template("/templates/index.html")
         self.response.write(template.render())
 
+class MITPage(webapp2.RequestHandler):
+    def get(self):
+        self.response.headers['Content-Type'] = 'text/html'
+        template = jinja_env.get_template("/templates/index.html")
+        self.response.write(template.render())
+
+
+
+
+
+class StanfordPage(webapp2.RequestHandler):
+    def get(self):
+        self.response.headers['Content-Type'] = 'text/html'
+        template = jinja_env.get_template("/templates/index.html")
+        self.response.write(template.render())
+
+
+
 class AddEventPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
@@ -62,6 +80,5 @@ class AddEventPage(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', IntroPage),
-    ('/<collegename>', MainPage),
     ('/addevent', AddEventPage),
 ], debug=True)
