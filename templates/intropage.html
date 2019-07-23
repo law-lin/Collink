@@ -2,15 +2,28 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/index.css"
     <title></title>
   </head>
   <body>
-    {% if isUser %}
-    You're logged in as {{ email }}!
-    <a href = "{{ logout_url }}">Sign out</a>
-    {% else %}
-    Please log in.
-    <a href = "{{ login_url }}">Sign in</a>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    
+    <h2><center> Welcome to... </center></h2>
+    <h1 id="waitingpage"> COLLINK </h1>
+    <section class="signin">
+
+    <h1>
+      {% if isUser %}
+        You're logged in as {{ email }}!
+        <a href = "{{ logout_url }}">Sign out</a>
+      {% else %}
+      Please
+      <a href = "{{ login_url }}">sign in.</a>
     {% endif %}
+    </h1>
+  </section>
   </body>
 </html>
