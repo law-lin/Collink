@@ -6,12 +6,11 @@
     <title></title>
   </head>
   <body>
-<<<<<<< HEAD
     <br/>
     <br/>
     <br/>
     <br/>
-    
+
     <h2><center> Welcome to... </center></h2>
     <h1 id="waitingpage"> COLLINK </h1>
     <section class="signin">
@@ -23,19 +22,7 @@
       {% else %}
       Please
       <a href = "{{ login_url }}">sign in.</a>
-=======
-
-    <h1 style="color:blue;">WELCOME TO THE LOGIN PAGE! PLEASE LOGIN TO CONTINUE</h1>
-
-
-    {% if isUser %}
-    You're logged in as {{ email }}!
-    <a href = "{{ logout_url }}">Sign out</a>
-    {% else %}
-    Please log in.
-    <a href = "{{ login_url }}">Sign in</a>
->>>>>>> 3da6dea40b7d11ecabeb9e47211df71df5a9ffd6
-    {% endif %}
+      {% endif %}
     </h1>
   </section>
   </body>
