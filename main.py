@@ -31,7 +31,6 @@ class IntroPage(webapp2.RequestHandler):
             <select name = "College" required = "required">
                 <option value = "MIT"</option>
                 <option value = "Stanford"</option>
-                <option value = "University of Chicago"</option>
             </select>
             <input type="submit">
             </form>
