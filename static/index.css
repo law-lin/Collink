@@ -61,6 +61,17 @@ h3 {
   color: #303030;
 }
 
+.signin {
+  display: flex;
+  justify-content: center;
+}
+
+#waitingpage {
+  font-size: 120px;
+  text-align: center;
+  color: #319ccd; 
+}
+
 
 .topnav {
   background-color: #333;
