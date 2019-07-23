@@ -40,6 +40,8 @@ class IntroPage(webapp2.RequestHandler):
                 "logout_url": logout_url,
                 }
         self.response.write(template.render(template_vars))
+    def post(self):
+        template = jinja_env.get_template('/templates/index.html')
 
 
 

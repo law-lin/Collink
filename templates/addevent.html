@@ -2,11 +2,38 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <p>Welcome to The Add Events Page.</p>
-    <p>Here, you can add events to be shared with the whole college community!</p>
+    <title>Add Events</title>
+    <link rel="stylesheet" type="text/css" href="/static/index.css">
   </head>
   <body>
+    <div class="header">
+      <img class="positionleft" src="/static/headericon.png" height="80" width="80">
+      <img class="positionright" src="/static/headericon.png" height="80" width="80">
+      <h1 class="brandname"> COLLINK </h1>
+      <h2 class="slogan"> Linking up students on their college campuses nationwide! </h2>
+
+    </div>
+
+    <div class='topnav'>
+      <a href='/main'> Home </a>
+      <a class='active' href ='/addevent'> Add Events </a>
+    </div>
+    <br/>
+    <br/>
+    <center> <img src="/static/eventsicon.png" width="450" height="280"> </center>
+    <br/>
+    <br/>
+    <form method="post">
+      <label> Name/Organization:
+        <input type="text" name="event_name" value="" placeholder="The name of the host of your event." required>
+      </label>
+
+      <label> Date and Time:
+        <input type="datetime-local" name="event_time" value="" placeholder="What time is your event happening?" required>
+      </label>
+
+    
+
 
   </body>
 </html>
