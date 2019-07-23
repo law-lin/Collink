@@ -57,6 +57,5 @@ class AddEventPage(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', IntroPage),
-    ('/<collegename>/', MainPage),
     ('/addevent', AddEventPage),
 ], debug=True)
