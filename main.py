@@ -25,7 +25,7 @@ class IntroPage(webapp2.RequestHandler):
             email_address = user.nickname()
             logout_url = users.create_logout_url('/')
             self.response.write('''
-            Welcome to Collink, %s! Select the college you attend! <br>
+            Welcome to Collink, %s!<br>
             <form method="post" action="">Name:
             <input type = "text" name = "name">
             <input type="submit">
