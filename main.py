@@ -26,11 +26,11 @@ class IntroPage(webapp2.RequestHandler):
             logout_url = users.create_logout_url('/')
             self.response.write('''
             Welcome to Collink, %s! Select the college you attend! <br>
-            <form method="post" action="/">
-            <input type="text" name="name">
+            <form method="post" action="/">Name:
+            <input type="text" name="name">College:
             <select name = "College" required = "required">
-                <option value = "MIT"</option>
-                <option value = "Stanford"</option>
+                <option value = "MIT"</option>Massachusetts Institute of Technology
+                <option value = "Stanford"</option>Stanford University
             </select>
             <input type="submit">
             </form>

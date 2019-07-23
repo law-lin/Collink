@@ -1,6 +1,6 @@
 from google.appengine.ext import ndb
 
-class BlogPost(ndb.Model):
-    title = ndb.StringProperty()
-    content = ndb.StringProperty()
+class CollegeStudent (ndb.Model):
     name = ndb.StringProperty()
+    collegename = ndb.StringProperty()
+    classyear = ndb.IntegerProperty()
