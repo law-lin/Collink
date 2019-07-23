@@ -1,5 +1,6 @@
 import webapp2
 from google.appengine.api import users
+from google.appengine.ext import ndb
 
 import jinja2
 import os
@@ -12,12 +13,10 @@ jinja_env = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-class MainPage(webapp2.RequestHandler):
+class IntroPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
-        template = jinja_env.get_template("/templates/index.html")
-
-
+        template = jinja_env.get_template("/templates/intropage.html")
         user = users.get_current_user()
         login_url = None
         logout_url = None
@@ -26,9 +25,13 @@ class MainPage(webapp2.RequestHandler):
             email_address = user.nickname()
             logout_url = users.create_logout_url('/')
             self.response.write('''
-            Welcome to our site, %s!  Please sign up! <br>
-            <form method="post" action="/">
-            <input type="text" name="name">
+            Welcome to Collink, %s! Select the college you attend! <br>
+            <form method="post" action="/">Name:
+            <input type="text" name="name">College:
+            <select name = "College" required = "required">
+                <option value = "MIT"</option>Massachusetts Institute of Technology
+                <option value = "Stanford"</option>Stanford University
+            </select>
             <input type="submit">
             </form>
             ''' % (email_address))
@@ -44,6 +47,11 @@ class MainPage(webapp2.RequestHandler):
 
 
 
+class MainPage(webapp2.RequestHandler):
+    def get(self):
+        self.response.headers['Content-Type'] = 'text/html'
+        template = jinja_env.get_template("/templates/index.html")
+        self.response.write(template.render())
 
 class AddEventPage(webapp2.RequestHandler):
     def get(self):
@@ -53,6 +61,6 @@ class AddEventPage(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ('/', MainPage),
+    ('/', IntroPage),
     ('/addevent', AddEventPage),
 ], debug=True)

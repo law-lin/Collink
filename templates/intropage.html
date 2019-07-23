@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    {% if isUser %}
+    You're logged in as {{ email }}!
+    <a href = "{{ logout_url }}">Sign out</a>
+    {% else %}
+    Please log in.
+    <a href = "{{ login_url }}">Sign in</a>
+    {% endif %}
+  </body>
+</html>
