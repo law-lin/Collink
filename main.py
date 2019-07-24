@@ -52,45 +52,62 @@ class AddEventPage(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'text/html'
         template = jinja_env.get_template("templates/addevent.html")
 
-        host_name = self.request.get("host_name")
-        event_name = self.request.get("event_name")
-        event_time = self.request.get("event_time")
-        event_location = self.request.get("event_location")
-        event_type = self.request.get("event_type")
-        event_image = self.request.get("event_image")
-        event_des = self.request.get("event_des")
-        host_email = self.request.get("host_email")
+        # host_name = self.request.get("host_name")
+        # event_name = self.request.get("event_name")
+        # event_time = self.request.get("event_time")
+        # event_location = self.request.get("event_location")
+        # event_type = self.request.get("event_type")
+        # event_image = self.request.get("event_image")
+        # event_des = self.request.get("event_des")
+        # host_email = self.request.get("host_email")
+        #
+        # template_vars = {
+        #     "host_name" : host_name,
+        #     "event_name" : event_name,
+        #     "event_time" : event_time,
+        #     "event_location" : event_location,
+        #     "event_type" : event_type,
+        #     "event_image" : event_image,
+        #     "event_des" : event_des,
+        #     "host_email" : host_email,
+        #     }
+        #
+        # if event_type == "sports":
+        #     def post(self):
+        #         template = jinja_env.get_template("templates/sports.html")
+        # elif event_type == "academics":
+        #     def post(self):
+        #         template = jinja_env.get_template("templates/academics.html")
+        # elif event_type == "clubs":
+        #     def post(self):
+        #         template = jinja_env.get_template("templates/clubs.html")
+        # else:
+        #     def post(self):
+        #         template = jinja_env.get_template("templates/socialevents.html")
+        self.response.write(template.render())
 
-        template_vars = {
-            "host_name" : host_name,
-            "event_name" : event_name,
-            "event_time" : event_time,
-            "event_location" : event_location,
-            "event_type" : event_type,
-            "event_image" : event_image,
-            "event_des" : event_des,
-            "host_email" : host_email,
-            }
+class SportsPage(webapp2.RequestHandler):
+    def get(self):
+        self.response.headers['Content-Type'] = 'text/html'
+        template = jinja_env.get_template("/templates/sports.html")
+        self.response.write(template.render())
 
-        if event_type == "sports":
-            def post(self):
-                template = jinja_env.get_template("templates/.html")
-        elif event_type == "academics":
-            def post(self):
-                template = jinja_env.get_template("templates/.html")
-        elif event_type == "clubs":
-            def post(self):
-                template = jinja_env.get_template("templates/.html")
-        else:
-            def post(self):
-                template = jinja_env.get_template("templates/.html")
+class AcademicsPage(webapp2.RequestHandler):
+    def get(self):
+        self.response.headers['Content-Type'] = 'text/html'
+        template = jinja_env.get_template("/templates/academics.html")
+        self.response.write(template.render())
 
+class ClubsPage(webapp2.RequestHandler):
+    def get(self):
+        self.response.headers['Content-Type'] = 'text/html'
+        template = jinja_env.get_template("/templates/clubs.html")
+        self.response.write(template.render())
 
-
-
-
-
-
+class SocialEventsPage(webapp2.RequestHandler):
+    def get(self):
+        self.response.headers['Content-Type'] = 'text/html'
+        template = jinja_env.get_template("/templates/socialevents.html")
         self.response.write(template.render())
 
 
@@ -98,4 +115,9 @@ app = webapp2.WSGIApplication([
     ('/', IntroPage),
     ('/main', MainPage),
     ('/addevent', AddEventPage),
+    ('/sports', SportsPage),
+    ('/academics', AcademicsPage),
+    ('/clubs', ClubsPage),
+    ('/socialevents', SocialEventsPage),
+
 ], debug=True)
