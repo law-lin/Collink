@@ -25,8 +25,14 @@
       </div>
     <br/>
     <br/>
-    <title></title>
-  <body>
+
+        {% for event_post in academics_events %}
+            <h1> {{event_post.event_name}} <h1>
+            <h2> hosted by {{event_post.host_name}} at {{event_post.event_location}}, {{event_time}}</h2>
+            <p> Description: {{event_post.event_des}} </p>
+            <p> Contact the host at: {{event_post.host_email}} </p>
+
+        {% endfor %}
 
   </body>
 </html>
