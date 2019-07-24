@@ -27,12 +27,12 @@
     <br/>
     <div>
       {% for event_post in academics_events %}
-        <h1 class="eventtitle"> {{event_post.event_name}} <h3>
-        <h2 class="byevent"> hosted by {{event_post.host_name}} at {{event_post.event_location}} </h2>
-        <p class="blocktext"> {{event_post.event_date}} </p> <p class="blocktext"> {{event_post.event_time}} </p>
-        <p class="blocktext"> Description: {{event_post.event_des}} </p>
-        <p class="blocktext"> Contact the host at: {{event_post.host_email}} </p>
-
+      <h1 class="eventtitle"> {{event_post.event_name}} <h3>
+      <h2 class="byevent"> hosted by {{event_post.host_name}} at {{event_post.event_location}} </h2>
+      <p class="blocktext"> <b>{{event_post.event_date}}    {{event_post.event_time}} </b> </p>
+      <b> <p class="blocktext">Description: </b> {{event_post.event_des}} </p>
+      <p class="blocktext"><i>Contact the host at: </i> {{event_post.host_email}} </p>
+      <hr>
       {% endfor %}
     </div>
 

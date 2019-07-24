@@ -5,6 +5,7 @@ from google.appengine.ext import ndb
 import jinja2
 import os
 import time
+import datetime
 
 from models import Event
 
@@ -95,11 +96,10 @@ class AddEventPage(webapp2.RequestHandler):
 
 class SportsPage(webapp2.RequestHandler):
     def get(self):
-
-
-
         self.response.headers['Content-Type'] = 'text/html'
         sports_events = Event.query(Event.event_type=='sports').fetch()
+
+
         logout_url = None
         logout_url = users.create_logout_url('/')
         template_vars = {
