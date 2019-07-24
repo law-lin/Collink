@@ -11,30 +11,70 @@
       <img class="positionright" src="/static/headericon.png" height="80" width="80">
       <h1 class="brandname"> COLLINK </h1>
       <h2 class="slogan"> Linking up students on their college campuses nationwide! </h2>
-
     </div>
-
-      <center> <a class="blocktext" href = "{{ logout_url }}">Log out here</a> </center>
 
       <br/>
 
     <div class='topnav'>
       <a href='/main'> Home </a>
       <a class='active' href ='/addevent'> Add Events </a>
+      <a id="logout" href="{{logout_url}}"> Log Out </a>
     </div>
     <br/>
     <br/>
-    <center> <img src="/static/eventsicon.png" width="450" height="280"> </center>
+    <center> <img src="/static/eventsicon.png" width="250" height="150"> </center>
     <br/>
     <br/>
-    <form method="post">
-      <label> Name/Organization:
-        <input type="text" name="event_name" value="" placeholder="The name of the host of your event." required>
+    <form id="addeventform" method="post">
+      <section class="niceform">
+        <br/>
+      <label class="label"> Name/Organization:
+        <input type="text" name="host_name" value="" placeholder="Name of host" required>
       </label>
       <br/>
-      <label> Date and Time:
-        <input type="datetime-local" name="event_time" value="" placeholder="What time is your event happening?" required>
+      <br/>
+      <label class="label"> Event Title:
+        <input type="text" name="event_name" value="" placeholder="Name of event" required>
       </label>
+      <br/>
+      <br/>
+      <label class="label"> Date and Time:
+        <input type="datetime-local" name="event_time" required>
+      </label>
+      <br/>
+      <br/>
+      <label class="label"> Location:
+        <input type="text" name="event_location" value="" placeholder="Location of event" required>
+      </label>
+      <br/>
+      <br/>
+      <label class="label"> Type: </label>
+        <input type="radio" name="event_type" value="sports"> Sports </input>
+        <input type="radio" name="event_type" value="academics"> Academics </input>
+        <input type="radio" name="event_type" value="clubs"> Clubs </input>
+        <input type="radio" name="event_type" value="parties"> Social Events </input>
+      <br/>
+      <br/>
+      <label class="label"> Image:
+        <input type="file" name="event_image">
+      </label>
+      <br/>
+      <br/>
+      <label class="label"> Description:
+        <textarea rows="4" cols="25" name="event_des" value="" placeholder="Describe your event" required></textarea>
+      </label>
+      <br/>
+      <br/>
+      <label class="label"> Contact Information:
+        <input type="email" name="host_email" value="" placeholder="Host's email" required>
+      </label>
+      <br/>
+      <br/>
+      </section>
+      <br/>
+    <button class="button" type="submit"> Add Your Event! </button>
+  </form>
+
 
 
 
