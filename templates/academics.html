@@ -32,6 +32,10 @@
       <p class="blocktext"> <b>{{event_post.event_date}}    {{event_post.event_time}} </b> </p>
       <b> <p class="blocktext">Description: </b> {{event_post.event_des}} </p>
       <p class="blocktext"><i>Contact the host at: </i> {{event_post.host_email}} </p>
+      <a class="button2" href=https://www.google.com/calendar/render?action=TEMPLATE&text={{event_post.event_name}}&dates=&details={{event_post.event_des}}&location={{event_post.event_location}}&sf=true&output=xml"
+      " target="_blank" rel="nofollow">Add to my calendar</a>
+      <br/>
+      <br/>
       <hr>
       {% endfor %}
     </div>
