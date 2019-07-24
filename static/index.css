@@ -24,6 +24,23 @@ h3 {
   font-size: 20px;
 }
 
+#logout {
+  font-family: serif;
+  font-style: 13px;
+}
+
+#addeventform {
+  text-align: center;
+}
+
+.niceform {
+  background-color: white;
+  opacity: 0.71;
+  margin: auto;
+  width: 40%;
+  border-radius: 15px;
+}
+
 .leadertext {
   margin-left: auto;
   margin-right: auto;
@@ -33,12 +50,25 @@ h3 {
   font-style: italic;
 }
 
+.label {
+  font-family: monospace;
+  font-size: 18px;
+}
+
 .positionleft {
   float: left;
 }
 
 .positionright {
   float: right;
+}
+
+.button {
+  border-radius: 15px;
+  background-color: #3E78A3;
+  color: white;
+  height: 30px;
+  width: 140px;
 }
 
 .brandname {
