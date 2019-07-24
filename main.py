@@ -74,24 +74,20 @@ class AddEventPage(webapp2.RequestHandler):
 
         if event_type == "sports":
             def post(self):
-                template = jinja_env.get_template("templates/.html")
+                template = jinja_env.get_template("templates/sports.html")
         elif event_type == "academics":
             def post(self):
-                template = jinja_env.get_template("templates/.html")
+                template = jinja_env.get_template("templates/academics.html")
         elif event_type == "clubs":
             def post(self):
-                template = jinja_env.get_template("templates/.html")
+                template = jinja_env.get_template("templates/clubs.html")
         else:
             def post(self):
-                template = jinja_env.get_template("templates/.html")
-
-
-
-
-
-
+                template = jinja_env.get_template("templates/socialevents.html")
 
         self.response.write(template.render())
+
+
 
 
 app = webapp2.WSGIApplication([
