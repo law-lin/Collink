@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="/static/index.css">
+    <title> Sports Events </title>
   </head>
   <body>
     <div class="header">
@@ -25,8 +26,16 @@
     </div>
     <br/>
     <br/>
-    <title></title>
-  <body>
+    <ul>
+      {% for event_post in sports_events %}
+      <li>
+        <h1> {{event_name}} <h1>
+          <h2> hosted by {{host_name}} at {{event_location}}, {{event_time}}</h2>
+        <p> Description: {{event_des}} </p>
+        <p> Contact the host at: {{host_email}} </p>
+      </li>
+      {% endfor %}
+    </ul>  
 
   </body>
 </html>

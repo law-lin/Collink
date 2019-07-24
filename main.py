@@ -5,7 +5,7 @@ from google.appengine.ext import ndb
 import jinja2
 import os
 
-import models
+from models import Event
 
 
 jinja_env = jinja2.Environment(
@@ -85,12 +85,59 @@ class AddEventPage(webapp2.RequestHandler):
         #     def post(self):
         #         template = jinja_env.get_template("templates/socialevents.html")
         self.response.write(template.render())
+    def post(self):
+        host_name = self.request.get("host_name")
+        event_name = self.request.get("event_name")
+        event_time = self.request.get("event_time")
+        event_location = self.request.get("event_location")
+        event_type = self.request.get("event_type")
+        # event_image = self.request.get("event_image")
+        event_des = self.request.get("event_des")
+        host_email = self.request.get("host_email")
+
+        event_post = Event(host_name=host_name, event_name=event_name, event_time=event_time,
+        event_location=event_location, event_des=event_des, host_email=host_email, event_type=event_type)
+        event_post.put()
+
+        if event_type == "sports":
+            self.redirect('/sports')
+        elif event_type == "clubs":
+            self.redirect('/clubs')
+        elif event_type == "academics":
+            self.redirect('/academics')
+        else:
+            self.redirect('/socialevents')
+
+
+
+
+
+
 
 class SportsPage(webapp2.RequestHandler):
     def get(self):
+        host_name = self.request.get("host_name")
+        event_name = self.request.get("event_name")
+        event_time = self.request.get("event_time")
+        event_location = self.request.get("event_location")
+        event_type = self.request.get("event_type")
+        # event_image = self.request.get("event_image")
+        event_des = self.request.get("event_des")
+        host_email = self.request.get("host_email")
+
+        event_type = self.request.get("event_type")
         self.response.headers['Content-Type'] = 'text/html'
+        sports_events = Event.query().filter(ndb.GenericProperty("sports")==True).fetch()
+        event_post = Event(host_name=host_name, event_name=event_name, event_time=event_time,
+        event_location=event_location, event_des=event_des, host_email=host_email, event_type=event_type)
+        sports_events.insert(0,event_post)
+
+
+        template_vars = {
+            "sports_events":sports_events
+        }
         template = jinja_env.get_template("/templates/sports.html")
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
 
 class AcademicsPage(webapp2.RequestHandler):
     def get(self):
