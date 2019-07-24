@@ -14,6 +14,7 @@ h3 {
   font-family: serif;
   color: #3E78A3;
   text-decoration: underline;
+  text-decoration-color: white;
 }
 
 .blocktext {
@@ -21,12 +22,11 @@ h3 {
   margin-right: auto;
   width: 35em;
   font-family: serif;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 #logout {
-  font-family: serif;
-  font-style: 13px;
+  color: white;
 }
 
 #addeventform {
@@ -46,7 +46,7 @@ h3 {
   margin-right: auto;
   width: 35em;
   font-family: serif;
-  font-size: 20px;
+  font-size: 18px;
   font-style: italic;
 }
 
