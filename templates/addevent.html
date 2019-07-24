@@ -29,7 +29,7 @@
     <center> <img src="/static/eventsicon.png" width="250" height="150"> </center>
     <br/>
     <br/>
-    <form id="addeventform" method="post" action="/addevent">
+    <form id="addeventform" method="post">
       <section class="niceform">
         <br/>
       <label class="label"> Name/Organization:
@@ -42,13 +42,8 @@
       </label>
       <br/>
       <br/>
-      <label class="label"> Date:
-        <input type="date" name="event_date" required>
-      </label>
-      <br/>
-      <br/>
-      <label class="label"> Time:
-        <input type="time" name="event_time" required>
+      <label class="label"> Date and Time:
+        <input type="datetime-local" name="event_time" required>
       </label>
       <br/>
       <br/>
@@ -81,7 +76,7 @@
       <br/>
       </section>
       <br/>
-    <button class="button" type="submit" > Add Your Event! </button>
+    <button class="button" type="submit"> Add Your Event! </button>
   </form>
 
 
