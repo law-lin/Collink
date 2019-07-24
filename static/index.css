@@ -6,6 +6,13 @@ body {
   background-image:url("/static/background.jpeg")
 }
 
+hr {
+  margin: auto;
+  width: 30%;
+  size: "5";
+
+}
+
 h3 {
   margin-left: auto;
   margin-left: auto;
@@ -17,6 +24,20 @@ h3 {
   text-decoration-color: white;
 }
 
+.eventtitle {
+  font-size: 30px;
+  font-family: serif;
+  color: #3E78A3;
+  text-decoration: underline;
+  text-decoration-color: white;
+  text-align: center;
+}
+.byevent {
+  color:#3E78A3;
+  font-family: serif;
+  font-size: 24px;
+}
+
 .blocktext {
   margin-left: auto;
   margin-right: auto;
@@ -26,7 +47,7 @@ h3 {
 }
 
 .radio-button {
-  
+
 }
 
 #logout {

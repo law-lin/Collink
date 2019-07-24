@@ -9,6 +9,7 @@ class Event(ndb.Model):
     host_name = ndb.StringProperty()
     event_name = ndb.StringProperty()
     event_time = ndb.StringProperty()
+    event_date = ndb.StringProperty()
     event_location = ndb.StringProperty()
     event_des = ndb.TextProperty()
     host_email = ndb.StringProperty()
