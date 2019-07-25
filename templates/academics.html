@@ -38,6 +38,43 @@
       <br/>
       <br/>
       <hr>
+      <script type="text/javascript">
+
+
+      function DisableNextButton(disableButton) {
+  document.getElementById(disableButton).disabled = 'true';
+      };
+
+      function EnableNextButton(enableButton) {
+  document.getElementById(enableButton).removeAttribute('disabled');
+      };
+
+
+
+      var clicks = 0;
+      function onClick(numBer, disableButton, enableButton) {
+          clicks += numBer;
+          document.getElementById("clicks").innerHTML = clicks;
+          DisableNextButton(disableButton)
+          EnableNextButton(enableButton)
+
+      };
+
+
+      function onClick2(numBer, disableButton, enableButton) {
+          clicks += numBer;
+          document.getElementById("clicks").innerHTML = clicks;
+          DisableNextButton(disableButton)
+          EnableNextButton(enableButton)
+
+      };
+
+      </script>
+      <button type="button" id='signUpButton' onClick="onClick(1, 'signUpButton', 'removeButton')">Sign Up!</button>
+      <p>Number of people attending: <a id="clicks">0</a></p>
+
+      <button type="button" id='removeButton' onClick="onClick2(-1, 'removeButton', 'signUpButton')">Remove</button>
+
       {% endfor %}
     </div>
 
