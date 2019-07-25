@@ -21,6 +21,7 @@
         <a class='active' href='/academics'> Academics </a>
         <a href='/clubs'> Clubs </a>
         <a href='/socialevents'> Social Events </a>
+        <a href='/yourevents'> Your Events </a>
         <a id="logout" href="{{logout_url}}"> Log Out </a>
       </div>
     <br/>
@@ -32,6 +33,10 @@
       <p class="blocktext"> <b>{{event_post.event_date}}    {{event_post.event_time}} </b> </p>
       <b> <p class="blocktext">Description: </b> {{event_post.event_des}} </p>
       <p class="blocktext"><i>Contact the host at: </i> {{event_post.host_email}} </p>
+      <a class="button2" href=https://calendar.google.com/calendar/r/eventedit?text={{event_post.event_name}}&sf=true"
+      " target="_blank" rel="nofollow">Add to my calendar</a>
+      <br/>
+      <br/>
       <hr>
       {% endfor %}
     </div>

@@ -10,6 +10,7 @@ hr {
   margin: auto;
   width: 30%;
   size: "5";
+  color: black;
 
 }
 
@@ -127,6 +128,14 @@ h3 {
   color: #319ccd;
 }
 
+.button2 {
+  color: white;
+  text-align: center;
+  padding: 2px 8px;
+  font-size: 17px;
+  border-radius: 15px;
+  background-color: #3E78A3;
+}
 
 .topnav {
   background-color: #333;
