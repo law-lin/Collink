@@ -29,7 +29,6 @@ def create_calendar_url(event):
     url = "%s?%s" % (domain, data)
     return url
 
-
 jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
@@ -54,8 +53,6 @@ class IntroPage(webapp2.RequestHandler):
     def post(self):
         template = jinja_env.get_template('/templates/index.html')
 
-
-
 class MainPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
@@ -67,7 +64,6 @@ class MainPage(webapp2.RequestHandler):
             "logout_url" : logout_url,
         }
         self.response.write(template.render(template_vars))
-
 
 class AddEventPage(webapp2.RequestHandler):
     def get(self):
@@ -107,17 +103,8 @@ class AddEventPage(webapp2.RequestHandler):
             self.redirect('/socialevents')
             time.sleep(.5)
 
-
-
-
-
-
-
 class SportsPage(webapp2.RequestHandler):
     def get(self):
-
-
-
         self.response.headers['Content-Type'] = 'text/html'
         sports_events = Event.query(Event.event_type=='sports').fetch()
         template_vars = {
@@ -128,8 +115,6 @@ class SportsPage(webapp2.RequestHandler):
 
 class AcademicsPage(webapp2.RequestHandler):
     def get(self):
-
-
         self.response.headers['Content-Type'] = 'text/html'
         academics_events = Event.query(Event.event_type=='academics').fetch()
         template_vars = {
@@ -140,8 +125,6 @@ class AcademicsPage(webapp2.RequestHandler):
 
 class ClubsPage(webapp2.RequestHandler):
     def get(self):
-        event_type = self.request.get('event_type')
-
         self.response.headers['Content-Type'] = 'text/html'
         clubs_events = Event.query(Event.event_type=='clubs').fetch()
         template_vars = {
@@ -152,8 +135,6 @@ class ClubsPage(webapp2.RequestHandler):
 
 class SocialEventsPage(webapp2.RequestHandler):
     def get(self):
-        event_type = self.request.get('event_type')
-
         self.response.headers['Content-Type'] = 'text/html'
         social_events = Event.query(Event.event_type=='parties').fetch()
         template_vars = {
