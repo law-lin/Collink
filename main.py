@@ -44,7 +44,7 @@ class IntroPage(webapp2.RequestHandler):
         email_address = None
         if user:
             email_address = user.nickname()
-            login_url = users.create_login_url('/main')
+        login_url = users.create_login_url('/main')
         template_vars = {
             "isUser": user,
             "email": email_address,
