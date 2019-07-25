@@ -141,6 +141,12 @@ class SocialEventsPage(webapp2.RequestHandler):
         template = jinja_env.get_template("/templates/socialevents.html")
         self.response.write(template.render(template_vars))
 
+class YourEventsPage(webapp2.RequestHandler):
+    def get(self):
+        self.response.headers['Content-Type'] = 'text/html'
+        template = jinja_env.get_template("/templates/yourevents.html")
+        self.response.write(template.render())
+
 app = webapp2.WSGIApplication([
     ('/', IntroPage),
     ('/main', MainPage),
@@ -149,5 +155,6 @@ app = webapp2.WSGIApplication([
     ('/academics', AcademicsPage),
     ('/clubs', ClubsPage),
     ('/socialevents', SocialEventsPage),
+    ('/yourevents', YourEventsPage)
 
 ], debug=True)
