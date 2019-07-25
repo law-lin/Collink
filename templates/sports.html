@@ -37,6 +37,49 @@
         <p class="blocktext"><i>Contact the host at: </i> {{event_post.host_email}} </p>
         <a href=https://www.google.com/calendar/render?action=TEMPLATE&text={{event_post.event_name}}&dates=&details={{event_post.event_des}}&location={{event_post.event_location}}&sf=true&output=xml"
         " target="_blank" rel="nofollow">Add to my calendar</a>
+
+        <script type="text/javascript">
+
+
+        function DisableNextButton(disableButton) {
+    document.getElementById(disableButton).disabled = 'true';
+        };
+
+        function EnableNextButton(enableButton) {
+    document.getElementById(enableButton).removeAttribute('disabled');
+        };
+
+
+
+        var clicks = 0;
+        function onClick(numBer, disableButton, enableButton) {
+            clicks += numBer;
+            document.getElementById("clicks").innerHTML = clicks;
+            DisableNextButton(disableButton)
+            EnableNextButton(enableButton)
+
+        };
+
+
+        function onClick2(numBer, disableButton, enableButton) {
+            clicks += numBer;
+            document.getElementById("clicks").innerHTML = clicks;
+            DisableNextButton(disableButton)
+            EnableNextButton(enableButton)
+
+        };
+
+        </script>
+        <button type="button" id='signUpButton' onClick="onClick(1, 'signUpButton', 'removeButton')">Sign Up!</button>
+        <p>Number of people attending: <a id="clicks">0</a></p>
+
+        <button type="button" id='removeButton' onClick="onClick2(-1, 'removeButton', 'signUpButton')">Remove</button>
+
+
+
+
+
+
         <div>
         <hr>
       {% endfor %}
