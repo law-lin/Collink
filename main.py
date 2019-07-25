@@ -1,12 +1,33 @@
 import webapp2
 from google.appengine.api import users
 from google.appengine.ext import ndb
+import urllib
 
 import jinja2
 import os
 import time
 
+
 from models import Event
+
+
+def create_calendar_url(event):
+    date = datetime.datetime.strptime(event.event_date, '%Y-%m-%d').strftime('%Y%m%d')
+    time = datetime.datetime.strptime(event.event_time, '%H:%M')
+    start_time = time.strftime('%H%M%S')
+    end_time = (time + datetime.timedelta(hours = 2)).strftime('%H%M%S')
+    date_and_time = date + 'T' + start_time + '/' + date + 'T' + end_time
+    domain = "https://calendar.google.com/calendar/r/eventedit"
+    event_details = {
+        "text" : event.event_name,
+        "dates": date_and_time,
+        "details": event.event_des,
+        "sf": "true",
+        "location": event.event_location,
+    }
+    data = urllib.urlencode(event_details)
+    url = "%s?%s" % (domain, data)
+    return url
 
 
 jinja_env = jinja2.Environment(
