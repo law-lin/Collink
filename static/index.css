@@ -3,7 +3,7 @@ div {
 }
 
 body {
-  background-image:url("/static/background.jpeg")
+  background-image:url("/static/background.jpeg");
 }
 
 hr {
@@ -23,6 +23,15 @@ h3 {
   color: #3E78A3;
   text-decoration: underline;
   text-decoration-color: white;
+}
+
+.peoplecount {
+
+  display: flex;
+  justify-content: center;
+
+  flex-direction: row;
+  align-items: center;
 }
 
 .eventtitle {
@@ -135,6 +144,16 @@ h3 {
   font-size: 17px;
   border-radius: 15px;
   background-color: #3E78A3;
+}
+
+.buttoncount {
+  border-radius: 15px;
+  background-color: #3E78A3;
+  color: white;
+  height: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
+  width: 80px;
 }
 
 .topnav {

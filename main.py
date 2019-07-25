@@ -6,6 +6,7 @@ import urllib
 import jinja2
 import os
 import time
+import datetime
 
 
 from models import Event
@@ -85,10 +86,14 @@ class AddEventPage(webapp2.RequestHandler):
         # event_image = self.request.get("event_image")
         event_des = self.request.get("event_des")
         host_email = self.request.get("host_email")
+        event_date = self.request.get("event_date")
 
-        event_post = Event(host_name=host_name, event_name=event_name, event_time=event_time,
+
+
+        event_post = Event(host_name=host_name, event_name=event_name, event_date=event_date, event_time=event_time,
         event_location=event_location, event_des=event_des, host_email=host_email, event_type=event_type)
         event_post.put()
+
 
         if event_type == "sports":
             self.redirect('/sports')
@@ -107,8 +112,14 @@ class SportsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
         sports_events = Event.query(Event.event_type=='sports').fetch()
+        url_list = []
+        for event in sports_events:
+            url_name = create_calendar_url(event)
+            url_list.append(url_name)
+
         template_vars = {
             "sports_events":sports_events,
+            "url_list": url_list,
         }
         template = jinja_env.get_template("templates/sports.html")
         self.response.write(template.render(template_vars))
@@ -117,8 +128,14 @@ class AcademicsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
         academics_events = Event.query(Event.event_type=='academics').fetch()
+        url_list = []
+        for event in academics_events:
+            url_name = create_calendar_url(event)
+            url_list.append(url_name)
+
         template_vars = {
             "academics_events":academics_events,
+            "url_list": url_list,
         }
         template = jinja_env.get_template("/templates/academics.html")
         self.response.write(template.render(template_vars))
@@ -127,8 +144,14 @@ class ClubsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
         clubs_events = Event.query(Event.event_type=='clubs').fetch()
+        url_list = []
+        for event in clubs_events:
+            url_name = create_calendar_url(event)
+            url_list.append(url_name)
+
         template_vars = {
             "clubs_events":clubs_events,
+            "url_list": url_list,
         }
         template = jinja_env.get_template("/templates/clubs.html")
         self.response.write(template.render(template_vars))
@@ -137,8 +160,14 @@ class SocialEventsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
         social_events = Event.query(Event.event_type=='parties').fetch()
+        url_list = []
+        for event in social_events:
+            url_name = create_calendar_url(event)
+            url_list.append(url_name)
+
         template_vars = {
             "social_events":social_events,
+            "url_list": url_list,
         }
         template = jinja_env.get_template("/templates/socialevents.html")
         self.response.write(template.render(template_vars))

@@ -29,59 +29,25 @@
     <br/>
 
     <div>
-      {% for event_post in sports_events %}
+      {% for i in range(0,sports_events|length) %}
 
-        <h1 class="eventtitle"> {{event_post.event_name}} <h3>
-        <h2 class="byevent"> hosted by {{event_post.host_name}} at {{event_post.event_location}} </h2>
-        <p class="blocktext"> <b>{{event_post.event_time}} </b> </p>
-        <b> <p class="blocktext">Description: </b> {{event_post.event_des}} </p>
-        <p class="blocktext"><i>Contact the host at: </i> {{event_post.host_email}} </p>
-        <a class="button2" href=https://www.google.com/calendar/render?action=TEMPLATE&text={{event_post.event_name}}&dates=&details={{event_post.event_des}}&location={{event_post.event_location}}&sf=true&output=xml"
-        " target="_blank" rel="nofollow">Add to my calendar</a>
+        <h1 class="eventtitle"> {{sports_events[i].event_name}} <h3>
+        <h2 class="byevent"> hosted by {{sports_events[i].host_name}} at {{sports_events[i].event_location}} </h2>
+        <p class="blocktext"> <b>{{sports_events[i].event_time}} </b> </p>
+        <b> <p class="blocktext">Description: </b> {{sports_events[i].event_des}} </p>
+        <p class="blocktext"><i>Contact the host at: </i> {{sports_events[i].host_email}} </p>
+        <a class="button2" href={{url_list[i]}} target="_blank"> Add to my Calendar! </a>
         <br/>
-        <br/>
-        <hr>
+    <div class="peoplecount">
+        <button class="buttoncount" type="button" id='signUpButton' onClick="onClick(1, 'signUpButton', 'removeButton')">Sign Up!</button>
+        <p>People Attending: <a id="clicks">0</a></p>
 
-        <script type="text/javascript">
-
-
-        function DisableNextButton(disableButton) {
-    document.getElementById(disableButton).disabled = 'true';
-        };
-
-        function EnableNextButton(enableButton) {
-    document.getElementById(enableButton).removeAttribute('disabled');
-        };
-
-
-
-        var clicks = 0;
-        function onClick(numBer, disableButton, enableButton) {
-            clicks += numBer;
-            document.getElementById("clicks").innerHTML = clicks;
-            DisableNextButton(disableButton)
-            EnableNextButton(enableButton)
-
-        };
-
-
-        function onClick2(numBer, disableButton, enableButton) {
-            clicks += numBer;
-            document.getElementById("clicks").innerHTML = clicks;
-            DisableNextButton(disableButton)
-            EnableNextButton(enableButton)
-
-        };
-
-        </script>
-        <button type="button" id='signUpButton' onClick="onClick(1, 'signUpButton', 'removeButton')">Sign Up!</button>
-        <p>Number of people attending: <a id="clicks">0</a></p>
-
-        <button type="button" id='removeButton' onClick="onClick2(-1, 'removeButton', 'signUpButton')">Remove</button>
-
+        <button class="buttoncount" type="button" id='removeButton' onClick="onClick2(-1, 'removeButton', 'signUpButton')">Drop out.</button>
+    </div>
+      <br/>
+      <hr>
       {% endfor %}
       </div>
-
-
+    <script src="/static/index.js" type="text/javascript"></script>
   </body>
 </html>
