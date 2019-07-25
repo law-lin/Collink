@@ -33,7 +33,7 @@
 
         <h1 class="eventtitle"> {{sports_events[i].event_name}} <h3>
         <h2 class="byevent"> hosted by {{sports_events[i].host_name}} at {{sports_events[i].event_location}} </h2>
-        <p class="blocktext"> <b>{{sports_events[i].event_time}} </b> </p>
+        <p class="blocktext"> <b>{{sports_events[i].event_date}} {{sports_events[i].event_time}} </b> </p>
         <b> <p class="blocktext">Description: </b> {{sports_events[i].event_des}} </p>
         <p class="blocktext"><i>Contact the host at: </i> {{sports_events[i].host_email}} </p>
         <a class="button2" href={{url_list[i]}} target="_blank"> Add to my Calendar! </a>
