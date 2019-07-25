@@ -14,9 +14,9 @@ indexes:
   properties:
   - name: event_type
   - name: date_and_time
-    direction: desc
 
 - kind: Event
   properties:
   - name: event_type
   - name: date_and_time
+    direction: desc
