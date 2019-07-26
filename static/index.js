@@ -1,4 +1,6 @@
         signU = document.querySelectorAll('.signUpButton')
+        dropU = document.querySelectorAll('.removeButton')
+
 
         signU.forEach((signUpButton) => {
           var clicks = 0;
@@ -11,6 +13,24 @@
           eventKeyElement = parent.children[3]
           onClick(disableButton, enableButton, clicks, clickElement)
           UpdateAttendees(eventKeyElement.value)
+
+
+
+  });
+});
+
+
+        dropU.forEach((removeButton) => {
+
+          var clicks = 1;
+          removeButton.addEventListener('click', (event) => {
+
+          disableButton = event.target
+          parent = enableButton.parentElement
+          enableButton = parent.children[0]
+          clickElement = parent.children[1].children[0]
+          onClick2(disableButton, enableButton, clicks, clickElement)
+
 
 
   });
@@ -40,17 +60,17 @@
         function onClick(disableButton, enableButton, clicks, clickElement) {
             clicks += 1;
             clickElement.innerHTML = clicks;
-            DisableNextButton(disableButton)
-            EnableNextButton(enableButton)
+            DisableNextButton(disableButton);
+            EnableNextButton(enableButton);
 
 
         };
 
 
-        function onClick2(numBer, disableButton, enableButton) {
-            clicks += numBer;
-            document.getElementById("clicks").innerHTML = clicks;
-            DisableNextButton(disableButton)
-            EnableNextButton(enableButton)
+        function onClick2(disableButton, enableButton, clicks, clickElement) {
+            clicks -= 1;
+            clickElement.innerHTML = clicks;
+            DisableNextButton(disableButton);
+            EnableNextButton(enableButton);
 
         };

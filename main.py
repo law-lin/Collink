@@ -10,7 +10,7 @@ import datetime
 
 
 from models import Event
-from models import User
+from models import CollegeStudent
 
 
 def create_calendar_url(event):
@@ -53,8 +53,7 @@ class IntroPage(webapp2.RequestHandler):
             }
         self.response.write(template.render(template_vars))
 
-        user_info = User(email=email_address)
-        user_info.put()
+        
 
     def post(self):
         template = jinja_env.get_template('/templates/index.html')
