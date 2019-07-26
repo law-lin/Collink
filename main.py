@@ -117,6 +117,11 @@ class SportsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
         sports_events = Event.query(Event.event_type=='sports').order(Event.event_date).order(Event.event_time).fetch()
+
+        logout_url = None
+        logout_url = users.create_logout_url('/')
+
+
         url_list = []
         for event in sports_events:
             url_name = create_calendar_url(event)
@@ -125,14 +130,22 @@ class SportsPage(webapp2.RequestHandler):
         template_vars = {
             "sports_events":sports_events,
             "url_list": url_list,
-        }
+            "logout_url" : logout_url,
+            }
+
         template = jinja_env.get_template("templates/sports.html")
         self.response.write(template.render(template_vars))
 
 class AcademicsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
+
         academics_events = Event.query(Event.event_type=='academics').order(Event.event_date).order(Event.event_time).fetch()
+
+
+        logout_url = None
+        logout_url = users.create_logout_url('/')
+
         url_list = []
         for event in academics_events:
             url_name = create_calendar_url(event)
@@ -141,7 +154,8 @@ class AcademicsPage(webapp2.RequestHandler):
         template_vars = {
             "academics_events":academics_events,
             "url_list": url_list,
-        }
+            "logout_url" : logout_url,
+            }
         template = jinja_env.get_template("/templates/academics.html")
         self.response.write(template.render(template_vars))
 
@@ -157,7 +171,9 @@ class ClubsPage(webapp2.RequestHandler):
         template_vars = {
             "clubs_events":clubs_events,
             "url_list": url_list,
-        }
+            "logout_url" : logout_url,
+            }
+
         template = jinja_env.get_template("/templates/clubs.html")
         self.response.write(template.render(template_vars))
 
@@ -165,6 +181,10 @@ class SocialEventsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
         social_events = Event.query(Event.event_type=='parties').order(Event.event_date).order(Event.event_time).fetch()
+
+        logout_url = None
+        logout_url = users.create_logout_url('/')
+
         url_list = []
         for event in social_events:
             url_name = create_calendar_url(event)
@@ -173,7 +193,8 @@ class SocialEventsPage(webapp2.RequestHandler):
         template_vars = {
             "social_events":social_events,
             "url_list": url_list,
-        }
+            "logout_url" : logout_url,
+            }
         template = jinja_env.get_template("/templates/socialevents.html")
         self.response.write(template.render(template_vars))
 
@@ -198,15 +219,22 @@ class YourEventsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
         # your_events = User.query(User.email==).fetch()
+        logout_url = None
+        logout_url = users.create_logout_url('/')
+        template_vars = {
+            "logout_url" : logout_url,
+        }
 
 
         template = jinja_env.get_template("/templates/yourevents.html")
-        self.response.write(template.render())
         #
         # template_vars = {
         #     "your_events":your_events,
         #
         # }
+
+        self.response.write(template.render(template_vars))
+
 
 app = webapp2.WSGIApplication([
     ('/', IntroPage),
