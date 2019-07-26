@@ -8,7 +8,9 @@
           parent = disableButton.parentElement
           enableButton = parent.children[2]
           clickElement = parent.children[1].children[0]
+          eventKeyElement = parent.children[3]
           onClick(disableButton, enableButton, clicks, clickElement)
+          UpdateAttendees(eventKeyElement.value)
 
 
   });
@@ -23,7 +25,16 @@
           enableButton.removeAttribute('disabled');
         };
 
+        function UpdateAttendees(eventKey) {
+          const url = '/counter?' + 'event_key=' + eventKey
+          const options = {
+            method:'post',
+            credentials:'same-origin',
+          }
+          const request = new Request(url, options);
+          fetch(request);
 
+        }
 
 
         function onClick(disableButton, enableButton, clicks, clickElement) {

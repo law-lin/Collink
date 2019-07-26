@@ -205,16 +205,17 @@ class SocialEventsPage(webapp2.RequestHandler):
 class CounterHandler(webapp2.RequestHandler):
     def post(self):
         event_key = self.request.get('event_key')
+        event_key = ndb.Key(urlsafe=event_key)
         event = event_key.get()
         event.num_attendees += 1
         event.put()
         user = users.get_current_user()
-        attendee = Attendee.query(Attendee.email == user.nickname()).get()
+        attendee = User.query(User.email == user.nickname()).get()
         if attendee:
             attendee.events.append(event_key)
             attendee.put()
         else:
-            attendee = Attendee(email = user.nickname(), events = [event_key])
+            attendee = User(email = user.nickname(), events = [event_key])
             attendee.put()
 
 
