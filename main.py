@@ -163,6 +163,10 @@ class ClubsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
         clubs_events = Event.query(Event.event_type=='clubs').order(Event.event_date).order(Event.event_time).fetch()
+
+        logout_url = None
+        logout_url = users.create_logout_url('/')
+
         url_list = []
         for event in clubs_events:
             url_name = create_calendar_url(event)
