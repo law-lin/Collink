@@ -53,8 +53,7 @@ class IntroPage(webapp2.RequestHandler):
             }
         self.response.write(template.render(template_vars))
 
-        user_info = CollegeStudent(email=email_address)
-        user_info.put()
+        
 
     def post(self):
         template = jinja_env.get_template('/templates/index.html')
