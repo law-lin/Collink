@@ -116,7 +116,7 @@ class AddEventPage(webapp2.RequestHandler):
 class SportsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
-        sports_events = Event.query(Event.event_type=='sports').order(-Event.event_date and -Event.event_time).fetch()
+        sports_events = Event.query(Event.event_type=='sports').order(Event.event_date).order(Event.event_time).fetch()
         url_list = []
         for event in sports_events:
             url_name = create_calendar_url(event)
@@ -132,7 +132,7 @@ class SportsPage(webapp2.RequestHandler):
 class AcademicsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
-        academics_events = Event.query(Event.event_type=='academics').fetch()
+        academics_events = Event.query(Event.event_type=='academics').order(Event.event_date).order(Event.event_time).fetch()
         url_list = []
         for event in academics_events:
             url_name = create_calendar_url(event)
@@ -148,7 +148,7 @@ class AcademicsPage(webapp2.RequestHandler):
 class ClubsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
-        clubs_events = Event.query(Event.event_type=='clubs').fetch()
+        clubs_events = Event.query(Event.event_type=='clubs').order(Event.event_date).order(Event.event_time).fetch()
         url_list = []
         for event in clubs_events:
             url_name = create_calendar_url(event)
@@ -164,7 +164,7 @@ class ClubsPage(webapp2.RequestHandler):
 class SocialEventsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
-        social_events = Event.query(Event.event_type=='parties').fetch()
+        social_events = Event.query(Event.event_type=='parties').order(Event.event_date).order(Event.event_time).fetch()
         url_list = []
         for event in social_events:
             url_name = create_calendar_url(event)
@@ -202,7 +202,7 @@ class YourEventsPage(webapp2.RequestHandler):
 
         template = jinja_env.get_template("/templates/yourevents.html")
         self.response.write(template.render())
-        # 
+        #
         # template_vars = {
         #     "your_events":your_events,
         #
