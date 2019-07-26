@@ -116,10 +116,11 @@ class AddEventPage(webapp2.RequestHandler):
 class SportsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
-        sports_events = Event.query(Event.event_type=='sports').fetch()
+        sports_events = Event.query(Event.event_type=='sports').order(Event.event_date).order(Event.event_time).fetch()
 
         logout_url = None
         logout_url = users.create_logout_url('/')
+
 
         url_list = []
         for event in sports_events:
@@ -138,7 +139,9 @@ class SportsPage(webapp2.RequestHandler):
 class AcademicsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
-        academics_events = Event.query(Event.event_type=='academics').fetch()
+
+        academics_events = Event.query(Event.event_type=='academics').order(Event.event_date).order(Event.event_time).fetch()
+
 
         logout_url = None
         logout_url = users.create_logout_url('/')
@@ -159,11 +162,7 @@ class AcademicsPage(webapp2.RequestHandler):
 class ClubsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
-        clubs_events = Event.query(Event.event_type=='clubs').fetch()
-
-        logout_url = None
-        logout_url = users.create_logout_url('/')
-
+        clubs_events = Event.query(Event.event_type=='clubs').order(Event.event_date).order(Event.event_time).fetch()
         url_list = []
         for event in clubs_events:
             url_name = create_calendar_url(event)
@@ -181,7 +180,7 @@ class ClubsPage(webapp2.RequestHandler):
 class SocialEventsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
-        social_events = Event.query(Event.event_type=='parties').fetch()
+        social_events = Event.query(Event.event_type=='parties').order(Event.event_date).order(Event.event_time).fetch()
 
         logout_url = None
         logout_url = users.create_logout_url('/')
@@ -199,6 +198,23 @@ class SocialEventsPage(webapp2.RequestHandler):
         template = jinja_env.get_template("/templates/socialevents.html")
         self.response.write(template.render(template_vars))
 
+class CounterHandler(webapp2.RequestHandler):
+    def post(self):
+        event_key = self.request.get('event_key')
+        event = event_key.get()
+        event.num_attendees += 1
+        event.put()
+        user = users.get_current_user()
+        attendee = Attendee.query(Attendee.email == user.nickname()).get()
+        if attendee:
+            attendee.events.append(event_key)
+            attendee.put()
+        else:
+            attendee = Attendee(email = user.nickname(), events = [event_key])
+            attendee.put()
+
+
+
 class YourEventsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
@@ -211,7 +227,14 @@ class YourEventsPage(webapp2.RequestHandler):
 
 
         template = jinja_env.get_template("/templates/yourevents.html")
+        #
+        # template_vars = {
+        #     "your_events":your_events,
+        #
+        # }
+
         self.response.write(template.render(template_vars))
+
 
 app = webapp2.WSGIApplication([
     ('/', IntroPage),
@@ -221,6 +244,7 @@ app = webapp2.WSGIApplication([
     ('/academics', AcademicsPage),
     ('/clubs', ClubsPage),
     ('/socialevents', SocialEventsPage),
-    ('/yourevents', YourEventsPage)
+    ('/yourevents', YourEventsPage),
+    ('/counter', CounterHandler),
 
 ], debug=True)
