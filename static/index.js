@@ -16,6 +16,7 @@
 
 
 
+
   });
 });
 
@@ -29,7 +30,9 @@
           parent = enableButton.parentElement
           enableButton = parent.children[0]
           clickElement = parent.children[1].children[0]
+          eventKeyElement = parent.children[3]
           onClick2(disableButton, enableButton, clicks, clickElement)
+          SubtractAttendees(eventKeyElement.value)
 
 
 
@@ -56,10 +59,20 @@
 
         }
 
+        function SubtractAttendees(eventKey) {
+          const url = '/subtract?' + 'event_key=' + eventKey
+          const options =
+          {
+            method:'post',
+            credentials:'same-origin',
+          }
+          const request = new Request(url, options);
+          fetch(request)
+        }
 
         function onClick(disableButton, enableButton, clicks, clickElement) {
             clicks += 1;
-            clickElement.innerHTML = clicks;
+            // clickElement.innerHTML = clicks;
             DisableNextButton(disableButton);
             EnableNextButton(enableButton);
 
@@ -69,7 +82,7 @@
 
         function onClick2(disableButton, enableButton, clicks, clickElement) {
             clicks -= 1;
-            clickElement.innerHTML = clicks;
+            // clickElement.innerHTML = clicks;
             DisableNextButton(disableButton);
             EnableNextButton(enableButton);
 

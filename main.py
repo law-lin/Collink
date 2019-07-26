@@ -220,6 +220,18 @@ class CounterHandler(webapp2.RequestHandler):
             attendee = User(email = user.nickname(), events = [event_key])
             attendee.put()
 
+class SubtractHandler(webapp2.RequestHandler):
+    def post(self):
+        event_key = self.request.get('event_key')
+        event_key = ndb.Key(urlsafe=event_key)
+        event = event_key.get()
+        event.num_attendees = event.num_attendees - 1
+        event.put()
+        user = users.get_current_user()
+        attendee = User.query(User.email == user.nickname()).get()
+        attendee.events.remove(event_key)
+        attendee.put()
+
 
 
 class YourEventsPage(webapp2.RequestHandler):
@@ -281,6 +293,7 @@ app = webapp2.WSGIApplication([
     ('/socialevents', SocialEventsPage),
     ('/yourevents', YourEventsPage),
     ('/counter', CounterHandler),
-    ('/image', Image)
+    ('/subtract', SubtractHandler),
+    ('/image', Image),
 
 ], debug=True)
