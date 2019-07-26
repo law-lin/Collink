@@ -1,10 +1,5 @@
 from google.appengine.ext import ndb
 
-class CollegeStudent(ndb.Model):
-    name = ndb.StringProperty()
-    collegename = ndb.StringProperty()
-    classyear = ndb.IntegerProperty()
-
 class Event(ndb.Model):
     host_name = ndb.StringProperty()
     event_name = ndb.StringProperty()
@@ -14,4 +9,8 @@ class Event(ndb.Model):
     event_des = ndb.TextProperty()
     host_email = ndb.StringProperty()
     event_type = ndb.StringProperty()
-    sort_date = ndb.DateProperty()
+    num_attendees = ndb.IntegerProperty(default=0)
+
+class User(ndb.Model):
+    email = ndb.StringProperty()
+    events = ndb.KeyProperty(repeated=True)

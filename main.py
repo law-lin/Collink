@@ -10,6 +10,7 @@ import datetime
 
 
 from models import Event
+from models import User
 
 
 def create_calendar_url(event):
@@ -51,6 +52,10 @@ class IntroPage(webapp2.RequestHandler):
             "login_url": login_url,
             }
         self.response.write(template.render(template_vars))
+
+        user_info = User(email=email_address)
+        user_info.put()
+
     def post(self):
         template = jinja_env.get_template('/templates/index.html')
 
@@ -192,8 +197,16 @@ class CounterHandler(webapp2.RequestHandler):
 class YourEventsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
+        # your_events = User.query(User.email==).fetch()
+
+
         template = jinja_env.get_template("/templates/yourevents.html")
         self.response.write(template.render())
+        # 
+        # template_vars = {
+        #     "your_events":your_events,
+        #
+        # }
 
 app = webapp2.WSGIApplication([
     ('/', IntroPage),

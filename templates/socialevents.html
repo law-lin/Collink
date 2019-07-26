@@ -30,7 +30,7 @@
     {% for i in range(0,social_events|length) %}
           <h1 class="eventtitle"> {{social_events[i].event_name}} <h3>
           <h2 class="byevent"> hosted by {{social_events[i].host_name}} at {{social_events[i].event_location}} </h2>
-          <p class="blocktext"> <b>{{social_events[i].event_time}} </b> </p>
+          <p class="blocktext"> <b>{{social_events[i].event_date}} {{social_events[i].event_time}} </b> </p>
           <b> <p class="blocktext">Description: </b> {{social_events[i].event_des}} </p>
           <p class="blocktext"><i>Contact the host at: </i> {{social_events[i].host_email}} </p>
           <a class="button2" href={{url_list[i]}} target="_blank"> Add to my Calendar! </a>
