@@ -1,6 +1,7 @@
 import webapp2
 from google.appengine.api import users
 from google.appengine.ext import ndb
+from google.appengine.api import images
 import urllib
 
 import jinja2
@@ -87,12 +88,12 @@ class AddEventPage(webapp2.RequestHandler):
         event_time = self.request.get("event_time")
         event_location = self.request.get("event_location")
         event_type = self.request.get("event_type")
-        event_image = self.request.get("event_image")
         event_des = self.request.get("event_des")
         host_email = self.request.get("host_email")
         event_date = self.request.get("event_date")
 
-
+        event_image = self.request.get("event_image")
+        # event_image = images.resize(event_image, 10, 10)
 
         event_post = Event(host_name=host_name, event_name=event_name, event_date=event_date, event_time=event_time,
         event_location=event_location, event_des=event_des, host_email=host_email, event_type=event_type, event_image=event_image)
@@ -125,6 +126,8 @@ class SportsPage(webapp2.RequestHandler):
         for event in sports_events:
             url_name = create_calendar_url(event)
             url_list.append(url_name)
+
+
 
         template_vars = {
             "sports_events":sports_events,
@@ -240,6 +243,16 @@ class YourEventsPage(webapp2.RequestHandler):
 
         self.response.write(template.render(template_vars))
 
+class Image(webapp2.RequestHandler):
+    def get(self):
+        event_key = ndb.Key(urlsafe=self.request.get('event_key'))
+        event = event_key.get()
+        if event.event_image:
+            self.response.headers['Content-Type'] = 'image/png'
+            self.response.out.write(event.event_image)
+        else:
+            self.response.out.write('No image')
+
 
 app = webapp2.WSGIApplication([
     ('/', IntroPage),
@@ -251,5 +264,6 @@ app = webapp2.WSGIApplication([
     ('/socialevents', SocialEventsPage),
     ('/yourevents', YourEventsPage),
     ('/counter', CounterHandler),
+    ('/image', Image)
 
 ], debug=True)
