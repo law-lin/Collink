@@ -111,7 +111,7 @@ class AddEventPage(webapp2.RequestHandler):
 class SportsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
-        sports_events = Event.query(Event.event_type=='sports').fetch()
+        sports_events = Event.query(Event.event_type=='sports').order(-Event.event_date and -Event.event_time).fetch()
         url_list = []
         for event in sports_events:
             url_name = create_calendar_url(event)
@@ -172,6 +172,23 @@ class SocialEventsPage(webapp2.RequestHandler):
         template = jinja_env.get_template("/templates/socialevents.html")
         self.response.write(template.render(template_vars))
 
+class CounterHandler(webapp2.RequestHandler):
+    def post(self):
+        event_key = self.request.get('event_key')
+        event = event_key.get()
+        event.num_attendees += 1
+        event.put()
+        user = users.get_current_user()
+        attendee = Attendee.query(Attendee.email == user.nickname()).get()
+        if attendee:
+            attendee.events.append(event_key)
+            attendee.put()
+        else:
+            attendee = Attendee(email = user.nickname(), events = [event_key])
+            attendee.put()
+
+
+
 class YourEventsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
@@ -186,6 +203,7 @@ app = webapp2.WSGIApplication([
     ('/academics', AcademicsPage),
     ('/clubs', ClubsPage),
     ('/socialevents', SocialEventsPage),
-    ('/yourevents', YourEventsPage)
+    ('/yourevents', YourEventsPage),
+    ('/counter', CounterHandler),
 
 ], debug=True)

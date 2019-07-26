@@ -13,6 +13,12 @@ indexes:
 - kind: Event
   properties:
   - name: event_type
+  - name: event_time
+    direction: desc
+
+- kind: Event
+  properties:
+  - name: event_type
   - name: date_and_time
 
 - kind: Event

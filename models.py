@@ -14,3 +14,4 @@ class Event(ndb.Model):
     event_des = ndb.TextProperty()
     host_email = ndb.StringProperty()
     event_type = ndb.StringProperty()
+    sort_date = ndb.DateProperty()
