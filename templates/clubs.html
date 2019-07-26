@@ -36,10 +36,14 @@
     <a class="button2" href={{url_list[i]}} target="_blank"> Add to my Calendar! </a>
     <br/>
     <div class="peoplecount">
-    <button class="buttoncount signUpButton" type="button" >Sign Up!</button>
-    <p>People Attending: <a id="clicks">0</a></p>
+      <button class="buttoncount signUpButton" type="button" >Sign Up!</button>
+      <p>People Attending: <a id="clicks">0</a></p>
 
-    <button class="buttoncount removeButton" type="button">Drop Out.</button>
+
+      <button class="buttoncount removeButton" type="button">Drop Out.</button>
+
+        <input type="hidden" value="{{sports_events[i].key.urlsafe()}}">
+
   </div>
     <br/>
     <hr>
