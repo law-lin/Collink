@@ -92,6 +92,7 @@ class AddEventPage(webapp2.RequestHandler):
         event_date = self.request.get("event_date")
 
         event_image = self.request.get("event_image")
+
         # event_image = images.resize(event_image, 10, 10)
 
         event_post = Event(host_name=host_name, event_name=event_name, event_date=event_date, event_time=event_time,
