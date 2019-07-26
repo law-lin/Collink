@@ -36,7 +36,7 @@
         <p class="blocktext"> <b>{{sports_events[i].event_date}} {{sports_events[i].event_time}} </b> </p>
         <b> <p class="blocktext">Description: </b> {{sports_events[i].event_des}} </p>
         <p class="blocktext"><i>Contact the host at: </i> {{sports_events[i].host_email}} </p>
-        <img src="/image?event_key={{sports_events[i].key.urlsafe()}}">
+        <img src="/image?event_key={{sports_events[i].key.urlsafe()}}" height="100" width="180">
         </br>
         </br>
         <a class="button2" href={{url_list[i]}} target="_blank"> Add to my Calendar! </a>
