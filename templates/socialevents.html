@@ -33,6 +33,9 @@
           <p class="blocktext"> <b>{{social_events[i].event_date}} {{social_events[i].event_time}} </b> </p>
           <b> <p class="blocktext">Description: </b> {{social_events[i].event_des}} </p>
           <p class="blocktext"><i>Contact the host at: </i> {{social_events[i].host_email}} </p>
+          <img src="/image?event_key={{social_events[i].key.urlsafe()}}">
+          </br>
+          </br>
           <a class="button2" href={{url_list[i]}} target="_blank"> Add to my Calendar! </a>
           <br/>
         <div class="peoplecount">
@@ -42,7 +45,7 @@
 
           <button class="buttoncount removeButton" type="button">Drop Out.</button>
 
-            <input type="hidden" value="{{socialevents_events[i].key.urlsafe()}}">
+            <input type="hidden" value="{{social_events[i].key.urlsafe()}}">
 
       </div>
         <br/>
