@@ -20,19 +20,20 @@
 });
 
 
-signU.forEach((removeButton) => {
-  var clicks = 0;
-  removeButton.addEventListener('click', (event) => {
+        dropU.forEach((removeButton) => {
 
-  disableButton = event.target
-  parent = enableButton.parentElement
-  enableButton = parent.children[2]
-  clickElement = parent.children[1].children[0]
-  onClick2(enableButton, disableButton, clicks, clickElement)
+          var clicks = 1;
+          removeButton.addEventListener('click', (event) => {
+
+          disableButton = event.target
+          parent = enableButton.parentElement
+          enableButton = parent.children[0]
+          clickElement = parent.children[1].children[0]
+          onClick2(disableButton, enableButton, clicks, clickElement)
 
 
 
-});
+  });
 });
 
         function DisableNextButton(disableButton) {
@@ -67,7 +68,7 @@ signU.forEach((removeButton) => {
 
 
         function onClick2(disableButton, enableButton, clicks, clickElement) {
-            clicks += 1;
+            clicks -= 1;
             clickElement.innerHTML = clicks;
             DisableNextButton(disableButton);
             EnableNextButton(enableButton);
