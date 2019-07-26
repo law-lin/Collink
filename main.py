@@ -225,20 +225,21 @@ class CounterHandler(webapp2.RequestHandler):
 class YourEventsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
-        # your_events = User.query(User.email==).fetch()
+        user = users.get_current_user()
+        user_email = user.nickname()
+        attendee = User.query(User.email == user_email).get()
+        events = []
+        for event_key in attendee.events:
+            events.append(event_key.get())
         logout_url = None
         logout_url = users.create_logout_url('/')
         template_vars = {
             "logout_url" : logout_url,
+            "events": events,
         }
 
 
         template = jinja_env.get_template("/templates/yourevents.html")
-        #
-        # template_vars = {
-        #     "your_events":your_events,
-        #
-        # }
 
         self.response.write(template.render(template_vars))
 
