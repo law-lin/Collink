@@ -88,7 +88,7 @@ class AddEventPage(webapp2.RequestHandler):
         event_time = self.request.get("event_time")
         event_location = self.request.get("event_location")
         event_type = self.request.get("event_type")
-        # event_image = self.request.get("event_image")
+        event_image = self.request.get("event_image")
         event_des = self.request.get("event_des")
         host_email = self.request.get("host_email")
         event_date = self.request.get("event_date")
@@ -96,7 +96,7 @@ class AddEventPage(webapp2.RequestHandler):
 
 
         event_post = Event(host_name=host_name, event_name=event_name, event_date=event_date, event_time=event_time,
-        event_location=event_location, event_des=event_des, host_email=host_email, event_type=event_type)
+        event_location=event_location, event_des=event_des, host_email=host_email, event_type=event_type, event_image=event_image)
         event_post.put()
 
 

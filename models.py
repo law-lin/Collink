@@ -7,6 +7,7 @@ class Event(ndb.Model):
     event_date = ndb.StringProperty()
     event_location = ndb.StringProperty()
     event_des = ndb.TextProperty()
+    event_image = ndb.BlobProperty()
     host_email = ndb.StringProperty()
     event_type = ndb.StringProperty()
     num_attendees = ndb.IntegerProperty(default=0)
