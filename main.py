@@ -9,7 +9,6 @@ import os
 import time
 import datetime
 
-
 from models import Event
 from models import User
 
