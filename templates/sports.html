@@ -42,7 +42,14 @@
       <button class="buttoncount signUpButton" type="button" >Sign Up!</button>
       <p>People Attending: <a id="clicks">0</a></p>
 
+<<<<<<< HEAD
       <button class="buttoncount removeButton" type="button">Remove</button>
+=======
+        <input type="hidden" value="{{sports_events[i].key.urlsafe()}}">
+
+        <button class="buttoncount" type="button" id='removeButton' onClick="onClick2(-1, 'removeButton', 'signUpButton')">Drop out.</button>
+    </div>
+>>>>>>> ebe446a25908d5047b3f221646b18e88a5b4c469
       <br/>
       <hr>
       {% endfor %}
