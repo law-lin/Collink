@@ -25,7 +25,18 @@
       <a class = 'active' href='/yourevents'> Your Events </a>
       <a id="logout" href="{{logout_url}}"> Log Out </a>
     </div>
-    <br/>
-    <br/>
 
-    {{email}}
+
+
+    {% for event in events %}
+    <div>
+      <h1 class="eventtitle"> {{event.event_name}} <h3>
+      <h2 class="byevent"> hosted by {{event.host_name}} at {{event.event_location}} </h2>
+      <p class="blocktext"> <b>{{event.event_date}} {{event.event_time}} </b> </p>
+      <b> <p class="blocktext">Description: </b> {{event.event_des}} </p>
+      <p class="blocktext"><i>Contact the host at: </i> {{event.host_email}} </p>
+      <br/>
+    </div>
+    {% endfor %}
+    <br/>
+    <br/>
