@@ -10,6 +10,7 @@ class Event(ndb.Model):
     event_image = ndb.BlobProperty()
     host_email = ndb.StringProperty()
     event_type = ndb.StringProperty()
+    date_and_time = ndb.DateTimeProperty()
     num_attendees = ndb.IntegerProperty(default=0)
 
 class User(ndb.Model):

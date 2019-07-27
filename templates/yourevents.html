@@ -25,9 +25,18 @@
       <a class = 'active' href='/yourevents'> Your Events </a>
       <a id="logout" href="{{logout_url}}"> Log Out </a>
     </div>
-
-
-
+    <br/>
+    <form class="center" method="post" action="/yourevents">
+      <select name="sort-button">
+      <option value="time-of-event"> Time of Event </option>
+      <option value="alphabetical"> Alphabetically </option>
+      <option value="time-of-post"> Time of Post </option>
+      <option value="number-of-people"> People Attending </option>
+    </select>
+    <input class="buttoncount" type="submit" value="Sort!">
+    </form>
+    <br/>
+    <br/>
     {% for event in events %}
     <div>
       <h1 class="eventtitle"> {{event.event_name}} <h3>
@@ -35,6 +44,7 @@
       <p class="blocktext"> <b>{{event.event_date}} {{event.event_time}} </b> </p>
       <b> <p class="blocktext">Description: </b> {{event.event_des}} </p>
       <p class="blocktext"><i>Contact the host at: </i> {{event.host_email}} </p>
+      <p>People Attending: <a id="clicks">{{event.num_attendees}}</a></p>
       <br/>
     </div>
     {% endfor %}

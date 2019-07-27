@@ -25,6 +25,11 @@ h3 {
   text-decoration-color: white;
 }
 
+.center {
+  display: flex;
+  justify-content: center;
+}
+
 .peoplecount {
 
   display: flex;
@@ -56,9 +61,7 @@ h3 {
   font-size: 18px;
 }
 
-.radio-button {
 
-}
 
 #logout {
   color: white;

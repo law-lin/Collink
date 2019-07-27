@@ -26,7 +26,17 @@
       <a id="logout" href="{{logout_url}}"> Log Out </a>
     </div>
     <br/>
-    <br/>
+    <form class="center" method="post" action="/sports">
+      <select name="sort-button">
+      <option value="time-of-event"> Time of Event </option>
+      <option value="alphabetical"> Alphabetically </option>
+      <option value="time-of-post"> Time of Post </option>
+      <option value="number-of-people"> People Attending </option>
+    </select>
+    <input class="buttoncount" type="submit" value="Sort!">
+  </form>
+  <br/>
+  <br/>
 
     <div>
       {% for i in range(0,sports_events|length) %}

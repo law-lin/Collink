@@ -24,6 +24,17 @@
         <a href='/yourevents'> Your Events </a>
         <a id="logout" href="{{logout_url}}"> Log Out </a>
       </div>
+      <br/>
+      <form class="center" method="post" action="/academics">
+        <select name="sort-button">
+        <option value="time-of-event"> Time of Event </option>
+        <option value="alphabetical"> Alphabetically </option>
+        <option value="time-of-post"> Time of Post </option>
+        <option value="number-of-people"> People Attending </option>
+      </select>
+      <input class="buttoncount" type="submit" value="Sort!">
+    </form>
+    <br/>
     <br/>
     <div>
       {% for i in range(academics_events|length) %}
@@ -36,8 +47,7 @@
       </br>
       </br>
       <a class="button2" href={{url_list[i]}} target="_blank"> Add to my Calendar! </a>
-      <br/>
-      <br/>
+
       <div class="peoplecount">
         <button class="buttoncount signUpButton" type="button" >Sign Up!</button>
         <p>People Attending: <a id="clicks"> {{academics_events[i].num_attendees}}</a></p>

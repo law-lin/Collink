@@ -138,6 +138,41 @@ class SportsPage(webapp2.RequestHandler):
         template = jinja_env.get_template("templates/sports.html")
         self.response.write(template.render(template_vars))
 
+    def post(self):
+        self.response.headers['Content-Type'] = 'text/html'
+        date_and_time = datetime.datetime.now()
+        sort_button = self.request.get('sort-button')
+
+        if sort_button == 'alphabetical':
+            sports_events = Event.query(Event.event_type=='sports').order(Event.event_name).fetch()
+        elif sort_button == 'time-of-event':
+            sports_events = Event.query(Event.event_type=='sports').order(Event.event_date).order(Event.event_time).fetch()
+        elif sort_button == 'time-of-post':
+            sports_events = Event.query(Event.event_type=='sports').order(-Event.date_and_time).fetch()
+        elif sort_button == 'number-of-people':
+            sports_events = Event.query(Event.event_type=='sports').order(-Event.num_attendees).fetch()
+
+        logout_url = None
+        logout_url = users.create_logout_url('/')
+
+
+        url_list = []
+        for event in sports_events:
+            url_name = create_calendar_url(event)
+            url_list.append(url_name)
+
+
+
+        template_vars = {
+            "sports_events":sports_events,
+            "url_list": url_list,
+            "logout_url" : logout_url,
+            }
+
+        template = jinja_env.get_template("templates/sports.html")
+        self.response.write(template.render(template_vars))
+
+
 class AcademicsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
@@ -160,6 +195,40 @@ class AcademicsPage(webapp2.RequestHandler):
             }
         template = jinja_env.get_template("/templates/academics.html")
         self.response.write(template.render(template_vars))
+    def post(self):
+        self.response.headers['Content-Type'] = 'text/html'
+        date_and_time = datetime.datetime.now()
+        sort_button = self.request.get('sort-button')
+
+        if sort_button == 'alphabetical':
+            academics_events = Event.query(Event.event_type=='academics').order(Event.event_name).fetch()
+        elif sort_button == 'time-of-event':
+            academics_events = Event.query(Event.event_type=='academics').order(Event.event_date).order(Event.event_time).fetch()
+        elif sort_button == 'time-of-post':
+            academics_events = Event.query(Event.event_type=='academics').order(-Event.date_and_time).fetch()
+        elif sort_button == 'number-of-people':
+            academics_events = Event.query(Event.event_type=='academics').order(-Event.num_attendees).fetch()
+
+        logout_url = None
+        logout_url = users.create_logout_url('/')
+
+
+        url_list = []
+        for event in academics_events:
+            url_name = create_calendar_url(event)
+            url_list.append(url_name)
+
+
+
+        template_vars = {
+            "academics_events":academics_events,
+            "url_list": url_list,
+            "logout_url" : logout_url,
+            }
+
+        template = jinja_env.get_template("templates/academics.html")
+        self.response.write(template.render(template_vars))
+
 
 class ClubsPage(webapp2.RequestHandler):
     def get(self):
@@ -183,6 +252,41 @@ class ClubsPage(webapp2.RequestHandler):
         template = jinja_env.get_template("/templates/clubs.html")
         self.response.write(template.render(template_vars))
 
+    def post(self):
+        self.response.headers['Content-Type'] = 'text/html'
+        date_and_time = datetime.datetime.now()
+        sort_button = self.request.get('sort-button')
+
+        if sort_button == 'alphabetical':
+            clubs_events = Event.query(Event.event_type=='clubs').order(Event.event_name).fetch()
+        elif sort_button == 'time-of-event':
+            clubs_events = Event.query(Event.event_type=='clubs').order(Event.event_date).order(Event.event_time).fetch()
+        elif sort_button == 'time-of-post':
+            clubs_events = Event.query(Event.event_type=='clubs').order(-Event.date_and_time).fetch()
+        elif sort_button == 'number-of-people':
+            clubs_events = Event.query(Event.event_type=='clubs').order(-Event.num_attendees).fetch()
+
+        logout_url = None
+        logout_url = users.create_logout_url('/')
+
+
+        url_list = []
+        for event in clubs_events:
+            url_name = create_calendar_url(event)
+            url_list.append(url_name)
+
+
+
+        template_vars = {
+            "clubs_events":clubs_events,
+            "url_list": url_list,
+            "logout_url" : logout_url,
+            }
+
+        template = jinja_env.get_template("templates/clubs.html")
+        self.response.write(template.render(template_vars))
+
+
 class SocialEventsPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
@@ -202,6 +306,39 @@ class SocialEventsPage(webapp2.RequestHandler):
             "logout_url" : logout_url,
             }
         template = jinja_env.get_template("/templates/socialevents.html")
+        self.response.write(template.render(template_vars))
+    def post(self):
+        self.response.headers['Content-Type'] = 'text/html'
+        date_and_time = datetime.datetime.now()
+        sort_button = self.request.get('sort-button')
+
+        if sort_button == 'alphabetical':
+            social_events = Event.query(Event.event_type=='parties').order(Event.event_name).fetch()
+        elif sort_button == 'time-of-event':
+            social_events = Event.query(Event.event_type=='parties').order(Event.event_date).order(Event.event_time).fetch()
+        elif sort_button == 'time-of-post':
+            social_events = Event.query(Event.event_type=='parties').order(-Event.date_and_time).fetch()
+        elif sort_button == 'number-of-people':
+            social_events = Event.query(Event.event_type=='parties').order(-Event.num_attendees).fetch()
+
+        logout_url = None
+        logout_url = users.create_logout_url('/')
+
+
+        url_list = []
+        for event in social_events:
+            url_name = create_calendar_url(event)
+            url_list.append(url_name)
+
+
+
+        template_vars = {
+            "social_events":social_events,
+            "url_list": url_list,
+            "logout_url" : logout_url,
+            }
+
+        template = jinja_env.get_template("templates/socialevents.html")
         self.response.write(template.render(template_vars))
 
 class CounterHandler(webapp2.RequestHandler):
@@ -256,6 +393,31 @@ class YourEventsPage(webapp2.RequestHandler):
 
 
         self.response.write(template.render(template_vars))
+    def post(self):
+        self.response.headers['Content-Type'] = 'text/html'
+        date_and_time = datetime.datetime.now()
+        sort_button = self.request.get('sort-button')
+
+        if sort_button == 'alphabetical':
+            events = Event.query().order(Event.event_name).fetch()
+        elif sort_button == 'time-of-event':
+            events = Event.query().order(Event.event_date).order(Event.event_time).fetch()
+        elif sort_button == 'time-of-post':
+            events = Event.query().order(-Event.date_and_time).fetch()
+        elif sort_button == 'number-of-people':
+            events = Event.query().order(-Event.num_attendees).fetch()
+
+        logout_url = None
+        logout_url = users.create_logout_url('/')
+
+        template_vars = {
+            "events":events,
+            "logout_url" : logout_url,
+            }
+
+        template = jinja_env.get_template("templates/yourevents.html")
+        self.response.write(template.render(template_vars))
+
 
 class Image(webapp2.RequestHandler):
     def get(self):
