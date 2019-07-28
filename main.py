@@ -429,21 +429,21 @@ class Image(webapp2.RequestHandler):
         if event.event_image:
             self.response.headers['Content-Type'] = 'image/png'
             self.response.out.write(event.event_image)
-#
-# class AboutUs(webapp2.RequestHandler):
-#     def get(self):
-#         self.response.headers['Content-Type'] = 'text/html'
-#
-#         logout_url = None
-#         logout_url = users.create_logout_url('/')
-#
-#         template_vars = {
-#
-#             "logout_url" : logout_url,
-#             }
-#         template = jinja_env.get_template("/templates/aboutus.html")
-#         self.response.write(template.render(template_vars))
-#
+
+class AboutUs(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_env.get_template("/templates/aboutus.html")
+        self.response.headers['Content-Type'] = 'text/html'
+
+        logout_url = None
+        logout_url = users.create_logout_url('/')
+
+        template_vars = {
+
+            "logout_url" : logout_url,
+            }
+        self.response.write(template.render(template_vars))
+
 
 
 app = webapp2.WSGIApplication([
@@ -458,5 +458,6 @@ app = webapp2.WSGIApplication([
     ('/counter', CounterHandler),
     ('/subtract', SubtractHandler),
     ('/image', Image),
+    ('/aboutus', AboutUs),
 
 ], debug=True)

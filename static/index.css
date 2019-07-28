@@ -4,14 +4,33 @@ div {
 
 body {
   background-image:url("/static/background.jpeg");
+  background-size: cover;
 }
 
 .repeating {
   background-image:url("/static/listbackground.png");
   background-color:whitesmoke;
   background-blend-mode:multiply;
+  background-size: auto;
 }
 
+.profilepic {
+  border-radius: 100px;
+}
+
+.aboutus {
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+  grid-template-rows: 250px 50px 350px;
+  grid-gap: 10px;
+}
+
+.box {
+  height: 100%;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
 
 hr {
   margin: auto;
