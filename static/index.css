@@ -14,15 +14,33 @@ body {
   background-size: auto;
 }
 
+.aboutpage {
+  background-image: url("/static/aboutbg2.jpg");
+  background-color: white;
+  background-blend-mode:multiply;
+  background-size: auto;
+}
+
 .profilepic {
   border-radius: 100px;
+  border: 3px dotted;
+  border-color: white;
+}
+
+.aboutbubble {
+  background-color: paleturquoise;
+  width: 40%;
+  border-radius: 25px;
+  padding: 16px;
+  border: 3px dotted white;
 }
 
 .aboutus {
   display: grid;
   grid-template-columns: 200px 200px 200px;
-  grid-template-rows: 250px 50px 350px;
-  grid-gap: 10px;
+  grid-template-rows: 250px 80px 250px;
+  grid-gap: 30px;
+  justify-content: center;
 }
 
 .box {
@@ -30,6 +48,10 @@ body {
   position: relative;
   text-align: center;
   width: 100%;
+}
+
+.abouttext {
+  color: slategrey;
 }
 
 hr {
@@ -41,14 +63,17 @@ hr {
 }
 
 h3 {
-  margin-left: auto;
-  margin-left: auto;
-  width: 36em;
   font-size: 30px;
   font-family: serif;
   color: #3E78A3;
   text-decoration: underline;
   text-decoration-color: white;
+}
+
+.intropage {
+  margin-left: auto;
+  margin-left: auto;
+  width: 42em;
 }
 
 .center {

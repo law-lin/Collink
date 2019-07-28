@@ -17,7 +17,10 @@ def create_calendar_url(event):
     date = datetime.datetime.strptime(event.event_date, '%Y-%m-%d').strftime('%Y%m%d')
     time = datetime.datetime.strptime(event.event_time, '%H:%M')
     start_time = time.strftime('%H%M%S')
-    end_time = (time + datetime.timedelta(hours = 2)).strftime('%H%M%S')
+    if start_time > 220000:
+        end_time = (time +datetime.timedelta(hours = 0.25)).strftime('%H%M%S')
+    else:
+        end_time = (time + datetime.timedelta(hours = 2)).strftime('%H%M%S')
     date_and_time = date + 'T' + start_time + '/' + date + 'T' + end_time
     domain = "https://calendar.google.com/calendar/r/eventedit"
     event_details = {
