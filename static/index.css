@@ -6,6 +6,13 @@ body {
   background-image:url("/static/background.jpeg");
 }
 
+.repeating {
+  background-image:url("/static/listbackground.png");
+  background-color:whitesmoke;
+  background-blend-mode:multiply;
+}
+
+
 hr {
   margin: auto;
   width: 30%;
