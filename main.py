@@ -90,13 +90,20 @@ class AddEventPage(webapp2.RequestHandler):
         event_des = self.request.get("event_des")
         host_email = self.request.get("host_email")
         event_date = self.request.get("event_date")
+        date_and_time = datetime.datetime.now()
+        optional_image = self.request.get("optional_image")
+        event_image = None
 
-        event_image = self.request.get("event_image")
+        if optional_image == 'on':
+            event_image = self.request.get("event_image")
 
-        # event_image = images.resize(event_image, 10, 10)
+
+
+
 
         event_post = Event(host_name=host_name, event_name=event_name, event_date=event_date, event_time=event_time,
-        event_location=event_location, event_des=event_des, host_email=host_email, event_type=event_type, event_image=event_image)
+        event_location=event_location, event_des=event_des, host_email=host_email, event_type=event_type, optional_image=optional_image,
+        event_image=event_image, date_and_time=date_and_time)
         event_post.put()
 
 
@@ -140,7 +147,6 @@ class SportsPage(webapp2.RequestHandler):
 
     def post(self):
         self.response.headers['Content-Type'] = 'text/html'
-        date_and_time = datetime.datetime.now()
         sort_button = self.request.get('sort-button')
 
         if sort_button == 'alphabetical':
@@ -197,7 +203,6 @@ class AcademicsPage(webapp2.RequestHandler):
         self.response.write(template.render(template_vars))
     def post(self):
         self.response.headers['Content-Type'] = 'text/html'
-        date_and_time = datetime.datetime.now()
         sort_button = self.request.get('sort-button')
 
         if sort_button == 'alphabetical':
@@ -254,7 +259,6 @@ class ClubsPage(webapp2.RequestHandler):
 
     def post(self):
         self.response.headers['Content-Type'] = 'text/html'
-        date_and_time = datetime.datetime.now()
         sort_button = self.request.get('sort-button')
 
         if sort_button == 'alphabetical':
@@ -309,7 +313,6 @@ class SocialEventsPage(webapp2.RequestHandler):
         self.response.write(template.render(template_vars))
     def post(self):
         self.response.headers['Content-Type'] = 'text/html'
-        date_and_time = datetime.datetime.now()
         sort_button = self.request.get('sort-button')
 
         if sort_button == 'alphabetical':
@@ -350,7 +353,7 @@ class CounterHandler(webapp2.RequestHandler):
         event.put()
         user = users.get_current_user()
         attendee = User.query(User.email == user.nickname()).get()
-        if attendee:
+        if attendee and event not in attendee.events:
             attendee.events.append(event_key)
             attendee.put()
         else:
@@ -362,12 +365,13 @@ class SubtractHandler(webapp2.RequestHandler):
         event_key = self.request.get('event_key')
         event_key = ndb.Key(urlsafe=event_key)
         event = event_key.get()
-        event.num_attendees = event.num_attendees - 1
+        event.num_attendees -= 1
         event.put()
         user = users.get_current_user()
         attendee = User.query(User.email == user.nickname()).get()
-        attendee.events.remove(event_key)
-        attendee.put()
+        if attendee and event in attendee.events:
+            attendee.events.remove(event_key)
+            attendee.put()
 
 
 
@@ -395,7 +399,6 @@ class YourEventsPage(webapp2.RequestHandler):
         self.response.write(template.render(template_vars))
     def post(self):
         self.response.headers['Content-Type'] = 'text/html'
-        date_and_time = datetime.datetime.now()
         sort_button = self.request.get('sort-button')
 
         if sort_button == 'alphabetical':
@@ -426,8 +429,6 @@ class Image(webapp2.RequestHandler):
         if event.event_image:
             self.response.headers['Content-Type'] = 'image/png'
             self.response.out.write(event.event_image)
-        else:
-            self.response.out.write('No image')
 #
 # class AboutUs(webapp2.RequestHandler):
 #     def get(self):

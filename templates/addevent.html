@@ -66,9 +66,11 @@
       <br/>
       <br/>
 
-      <label class="label"> Image:
-        <input type="file" name="event_image" required>
-      </label>
+      <label class="label"> Check to upload image (optional): </label>
+        <input type="checkbox" name="optional_image" id="checkbox">
+        <input type="file" name="event_image" id="imageinput" disabled>
+        </input>
+
 
       <br/>
       <br/>
@@ -86,10 +88,6 @@
       <br/>
     <button class="button" type="submit" > Add Your Event! </button>
   </form>
-
-
-
-
-
+  <script src="/static/addevent.js" type="text/javascript"></script>
   </body>
 </html>

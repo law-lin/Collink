@@ -1,5 +1,6 @@
         signU = document.querySelectorAll('.signUpButton')
         dropU = document.querySelectorAll('.removeButton')
+  
 
 
         signU.forEach((signUpButton) => {
