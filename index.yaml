@@ -44,5 +44,21 @@ indexes:
 - kind: Event
   properties:
   - name: event_type
+  - name: event_name
+
+- kind: Event
+  properties:
+  - name: event_type
   - name: event_time
+    direction: desc
+
+- kind: Event
+  properties:
+  - name: event_type
+  - name: num_attendees
+
+- kind: Event
+  properties:
+  - name: event_type
+  - name: num_attendees
     direction: desc

@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="/static/index.css">
     <title> Sports Events </title>
   </head>
-  <body>
+  <body class="repeating">
     <div class="header">
       <img class="positionleft" src="/static/headericon.png" height="80" width="80">
       <img class="positionright" src="/static/headericon.png" height="80" width="80">
@@ -23,10 +23,23 @@
       <a href='/clubs'> Clubs </a>
       <a href='/socialevents'> Social Events </a>
       <a href='/yourevents'> Your Events </a>
+      <a href='/aboutus'> About Us </a>
       <a id="logout" href="{{logout_url}}"> Log Out </a>
     </div>
     <br/>
-    <br/>
+    <form class="center" method="post" action="/sports">
+      <select name="sort-button">
+      <option value="time-of-event"> Time of Event </option>
+      <option value="alphabetical"> Alphabetically </option>
+      <option value="time-of-post"> Time of Post </option>
+      <option value="number-of-people"> People Attending </option>
+    </select>
+    <input class="buttoncount" type="submit" value="Sort!">
+  </form>
+  <br/>
+  <center> <img src="/static/pictures/sports.png"> </center>
+  <br/>
+  <br/>
 
     <div>
       {% for i in range(0,sports_events|length) %}
@@ -36,14 +49,16 @@
         <p class="blocktext"> <b>{{sports_events[i].event_date}} {{sports_events[i].event_time}} </b> </p>
         <b> <p class="blocktext">Description: </b> {{sports_events[i].event_des}} </p>
         <p class="blocktext"><i>Contact the host at: </i> {{sports_events[i].host_email}} </p>
-        <img src="/image?event_key={{sports_events[i].key.urlsafe()}}">
+        {% if sports_events[i].event_image %}
+        <img src="/image?event_key={{sports_events[i].key.urlsafe()}}" height="100" width="180">
+        {% endif %}
         </br>
         </br>
         <a class="button2" href={{url_list[i]}} target="_blank"> Add to my Calendar! </a>
         <br/>
     <div class="peoplecount">
       <button class="buttoncount signUpButton" type="button" >Sign Up!</button>
-      <p>People Attending: <a id="clicks">{{num_attendees}}</a></p>
+      <p>People Attending: <a id="clicks">{{sports_events[i].num_attendees}}</a></p>
 
 
       <button class="buttoncount removeButton" type="button">Drop out</button>
