@@ -64,7 +64,7 @@ body {
 .aboutus {
   display: grid;
   grid-template-columns: 200px 200px 200px;
-  grid-template-rows: 250px 80px 80px 200px;
+  grid-template-rows: 250px 80px 80px 300px;
   grid-gap: 30px;
   justify-content: center;
 }
@@ -142,10 +142,7 @@ h3 {
   font-size: 18px;
 }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> bda783014e7623260552887ec8325ccb2b6f2f18
 #logout {
   color: white;
 }
