@@ -459,29 +459,56 @@ class AboutUs(webapp2.RequestHandler):
             "logout_url" : logout_url,
             }
         self.response.write(template.render(template_vars))
-#
-# class SearchResults(webapp2.RequestHandler):
-#     def post(self):
-#         template = jinja_env.get_template("/templates/searchresults.html")
-#         self.response.headers['Content-Type'] = 'text/html'
-#
-#         search_results = Event.query(Event.event_name == search_bar)
-#
-#         logout_url = None
-#         logout_url = users.create_logout_url('/')
-#
-#         url_list = []
-#         for event in search_results:
-#             url_name = create_calendar_url(event)
-#             url_list.append(url_name)
-#
-#         template_vars = {
-#             "search_results":search_results,
-#             "url_list": url_list,
-#             "logout_url" : logout_url,
-#             }
-#
-#         self.response.write(template.render(template_vars))
+
+class SearchPage(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_env.get_template("/templates/search.html")
+        self.response.headers['Content-Type'] = 'text/html'
+        search_bar = self.request.get("search-bar")
+
+        logout_url = None
+        logout_url = users.create_logout_url('/')
+
+        template_vars = {
+            "logout_url":logout_url,
+        }
+
+        self.response.write(template.render(template_vars))
+    def post(self):
+        template = jinja_env.get_template("/templates/search.html")
+        self.response.headers['Content-Type'] = 'text/html'
+        search_bar = self.request.get("search-bar")
+
+        logout_url = None
+        logout_url = users.create_logout_url('/')
+
+        template_vars = {
+            "logout_url":logout_url,
+        }
+
+        self.response.write(template.render(template_vars))
+class SearchResults(webapp2.RequestHandler):
+    def post(self):
+        self.response.headers['Content-Type'] = 'text/html'
+        search_bar = self.request.get("search-bar")
+
+        search_results = Event.query(Event.event_name == search_bar).fetch()
+
+        logout_url = None
+        logout_url = users.create_logout_url('/')
+
+        url_list = []
+        for event in search_results:
+            url_name = create_calendar_url(event)
+            url_list.append(url_name)
+
+        template_vars = {
+            "search_results":search_results,
+            "url_list": url_list,
+            "logout_url" : logout_url,
+            }
+        template = jinja_env.get_template("/templates/search.html")
+        self.response.write(template.render(template_vars))
 
 
 
@@ -498,6 +525,7 @@ app = webapp2.WSGIApplication([
     ('/subtract', SubtractHandler),
     ('/image', Image),
     ('/aboutus', AboutUs),
-    # ('/searchresults', SearchResults),
+    ('/search', SearchPage),
+    ('/searchresults', SearchResults),
 
 ], debug=True)
