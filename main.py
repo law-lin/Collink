@@ -491,8 +491,11 @@ class SearchResults(webapp2.RequestHandler):
     def post(self):
         self.response.headers['Content-Type'] = 'text/html'
         search_bar = self.request.get("search-bar")
+        event_search_results = Event.query(Event.event_name == search_bar).fetch()
+        name_search_results = Event.query(Event.host_name == search_bar).fetch()
+        search_results = event_search_results + name_search_results
 
-        search_results = Event.query(Event.event_name == search_bar).fetch()
+
 
         logout_url = None
         logout_url = users.create_logout_url('/')
@@ -507,7 +510,7 @@ class SearchResults(webapp2.RequestHandler):
             "url_list": url_list,
             "logout_url" : logout_url,
             }
-        template = jinja_env.get_template("/templates/search.html")
+        template = jinja_env.get_template("/templates/searchresults.html")
         self.response.write(template.render(template_vars))
 
 
