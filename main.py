@@ -386,7 +386,7 @@ class SubtractHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         attendee = User.query(User.email == user.nickname()).get()
         if attendee:
-            attendee.events.remove(event_key)
+            attendee.events.delete(event_key)
             attendee.put()
 
 
