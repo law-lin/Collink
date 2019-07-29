@@ -6,10 +6,10 @@ body {
   background-image:url("/static/background.jpeg");
   background-size: cover;
 }
-
-h1.button4 {
+/*
+.button4 {
  background-color:#f14e4e;
- display:inline-block;
+ display:block;
  padding:0.3em 1.2em;
  margin:0 0.1em 0.1em 0;
  border:0.16em solid rgba(255,255,255,0);
@@ -21,18 +21,17 @@ h1.button4 {
  color:#f14e4e;
  text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
  text-align:center;
- transition: all 0.2s;
+ transition: all 0.2s;g
 
-}
-h1.button4:hover{
+} */
+/* .button4:hover{
  border-color: rgba(255,255,255,1);
-}
-@media all and (max-width:30em){
- h1.button4{
+} */
+/* @media all and (max-width:30em){ */
+/* .button4{
   display:block;
   margin:0.2em auto;
- }
-}
+ } */
 
 .repeating {
   background-image:url("/static/listbackground.png");
@@ -139,7 +138,7 @@ h3 {
   font-size: 18px;
 }
 
-div div {
+/* div div {
   visibility: hidden;
   opacity: 0;
   position: absolute;
@@ -153,7 +152,7 @@ div div:hover {
   visibility: visible;
   opacity: 1;
   display: block;
-}
+} */
 
 
 
