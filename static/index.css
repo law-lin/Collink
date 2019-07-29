@@ -64,7 +64,7 @@ body {
 .aboutus {
   display: grid;
   grid-template-columns: 200px 200px 200px;
-  grid-template-rows: 250px 80px 250px;
+  grid-template-rows: 250px 80px 80px 200px;
   grid-gap: 30px;
   justify-content: center;
 }
@@ -74,6 +74,10 @@ body {
   position: relative;
   text-align: center;
   width: 100%;
+}
+
+.links {
+  text-align: center;
 }
 
 .abouttext {
@@ -138,7 +142,10 @@ h3 {
   font-size: 18px;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> daf310a0ba195b1f42848f99927d0c7cebf8eeb3
 #logout {
   color: white;
 }
