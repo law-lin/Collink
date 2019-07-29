@@ -24,17 +24,24 @@
 
       <br/>
 
-    <div class='topnav'>
-      <a href='/main'> Home </a>
-      <a href ='/addevent'> Add Events </a>
-      <a class='active' href='/sports'> Sports </a>
-      <a href='/academics'> Academics </a>
-      <a href='/clubs'> Clubs </a>
-      <a href='/socialevents'> Social Events </a>
-      <a href='/yourevents'> Your Events </a>
-      <a href='/aboutus'> About Us </a>
-      <a id="logout" href="{{logout_url}}"> Log Out </a>
-    </div>
+      <nav class="topnav">
+
+      <ul class="menu">
+        <li class="menu-item"> <a href="/main">Home</a> </li>
+        <li class="menu-item"> <a href="/addevent">Add Events</a> </li>
+        <li class="menu-item"> <a href=""> Events </a>
+        <ul class="menu submenu">
+            <li class="menu-item"> <a href="/sports">Sports</a> </li>
+            <li class="menu-item"> <a href="/academics">Academics</a> </li>
+            <li class="menu-item"> <a href="/clubs">Clubs </a> </li>
+            <li class="menu-item"> <a href="/socialevents">Social Events </a></li>
+        </li>
+        </ul>
+        <li class="menu-item"> <a href="/yourevents">Your Events</a> </li>
+        <li class="menu-item"> <a href="/aboutus">About Us</a> </li>
+        <li class="menu-item"> <a id="logout" href="{{logout_url}}"> Log Out </a> </li>
+      </ul>
+    </nav>
     <br/>
     <form class="center" method="post" action="/sports">
       <select name="sort-button">
@@ -45,6 +52,7 @@
     </select>
     <input class="buttoncount" type="submit" value="Sort!">
   </form>
+
   <br/>
   <center> <img src="/static/pictures/sports.png"> </center>
   <br/>

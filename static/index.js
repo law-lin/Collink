@@ -14,7 +14,7 @@
           eventKeyElement = parent.children[3]
           onClick(disableButton, enableButton, clicks, clickElement)
           UpdateAttendees(eventKeyElement.value)
-    
+
 
 
 

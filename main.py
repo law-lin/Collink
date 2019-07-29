@@ -2,6 +2,7 @@ import webapp2
 from google.appengine.api import users
 from google.appengine.ext import ndb
 from google.appengine.api import images
+from google.appengine.api import search
 import urllib
 
 import jinja2
@@ -11,6 +12,10 @@ import datetime
 
 from models import Event
 from models import User
+
+
+
+
 
 
 def create_calendar_url(event):
@@ -95,6 +100,7 @@ class AddEventPage(webapp2.RequestHandler):
         event_date = self.request.get("event_date")
         date_and_time = datetime.datetime.now()
         optional_image = self.request.get("optional_image")
+
         event_image = None
 
         if optional_image == 'on':
@@ -110,6 +116,8 @@ class AddEventPage(webapp2.RequestHandler):
         event_post.put()
 
 
+
+
         if event_type == "sports":
             self.redirect('/sports')
             time.sleep(.5)
@@ -122,6 +130,8 @@ class AddEventPage(webapp2.RequestHandler):
         else:
             self.redirect('/socialevents')
             time.sleep(.5)
+
+
 
 class SportsPage(webapp2.RequestHandler):
     def get(self):
@@ -152,6 +162,7 @@ class SportsPage(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'text/html'
         sort_button = self.request.get('sort-button')
 
+
         if sort_button == 'alphabetical':
             sports_events = Event.query(Event.event_type=='sports').order(Event.event_name).fetch()
         elif sort_button == 'time-of-event':
@@ -160,6 +171,8 @@ class SportsPage(webapp2.RequestHandler):
             sports_events = Event.query(Event.event_type=='sports').order(-Event.date_and_time).fetch()
         elif sort_button == 'number-of-people':
             sports_events = Event.query(Event.event_type=='sports').order(-Event.num_attendees).fetch()
+
+
 
         logout_url = None
         logout_url = users.create_logout_url('/')
@@ -446,6 +459,29 @@ class AboutUs(webapp2.RequestHandler):
             "logout_url" : logout_url,
             }
         self.response.write(template.render(template_vars))
+#
+# class SearchResults(webapp2.RequestHandler):
+#     def post(self):
+#         template = jinja_env.get_template("/templates/searchresults.html")
+#         self.response.headers['Content-Type'] = 'text/html'
+#
+#         search_results = Event.query(Event.event_name == search_bar)
+#
+#         logout_url = None
+#         logout_url = users.create_logout_url('/')
+#
+#         url_list = []
+#         for event in search_results:
+#             url_name = create_calendar_url(event)
+#             url_list.append(url_name)
+#
+#         template_vars = {
+#             "search_results":search_results,
+#             "url_list": url_list,
+#             "logout_url" : logout_url,
+#             }
+#
+#         self.response.write(template.render(template_vars))
 
 
 
@@ -462,5 +498,6 @@ app = webapp2.WSGIApplication([
     ('/subtract', SubtractHandler),
     ('/image', Image),
     ('/aboutus', AboutUs),
+    # ('/searchresults', SearchResults),
 
 ], debug=True)
