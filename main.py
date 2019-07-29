@@ -493,7 +493,9 @@ class SearchResults(webapp2.RequestHandler):
         search_bar = self.request.get("search-bar")
         event_search_results = Event.query(Event.event_name == search_bar).fetch()
         name_search_results = Event.query(Event.host_name == search_bar).fetch()
-        search_results = event_search_results + name_search_results
+        date_search_results = Event.query(Event.event_date == search_bar).fetch()
+        location_search_results = Event.query(Event.event_location == search_bar).fetch()
+        search_results = event_search_results + name_search_results + date_search_results + location_search_results
 
 
 
