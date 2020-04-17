@@ -1,6 +1,7 @@
 # Collink
 
-During Google's Computer Science Summer Institute program, I worked with Alex (MIT '23) and Charles (Seton Hall University '23) to develop a website that allows students to connect with each other on their own college campuses.
+During Google's Computer Science Summer Institute program, I worked with Alex (MIT '23) and Charles (Seton Hall University '23) to develop a website that allows students to connect with each other on their own college campuses. Check the site out [here](http://collink.appspot.com/)!
+
 The technologies we used were:
 * Python
 * HTML/CSS
